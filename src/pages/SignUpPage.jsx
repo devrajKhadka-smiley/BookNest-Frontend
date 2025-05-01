@@ -26,8 +26,8 @@ const SignUpPage = () => {
     }
 
     try {
-      // const response = await fetch('https://localhost:7240/api/Auth/staffregister', {
-      const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/staffregister`, {
+      const response = await fetch('https://localhost:7240/api/Auth/staffregister', {
+      // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/staffregister`, {
 
         method: 'POST',
         mode: 'cors',
