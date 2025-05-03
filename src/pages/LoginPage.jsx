@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bgImage from "../assets/image.png";
 import TextInput from "../components/TextInput";
-import { FaUser } from "react-icons/fa";
+import { MdLockOutline } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -54,23 +55,21 @@ const LoginPage = () => {
           </p>
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col mb-5">
-              <label htmlFor="userName">Username</label>
               <TextInput
-              id={"userName"}
+                id={"userName"}
                 type="text"
                 placeholder="Enter your username"
                 onChange={handleChange}
-                icon={<FaUser />}
+                icon={<CgProfile />}
               />
             </div>
             <div className="flex flex-col mb-5">
-              <label htmlFor="password">Password</label>
               <TextInput
-              id="password"
+                id="password"
                 type="password"
                 placeholder="Enter your username"
                 onChange={handleChange}
-                icon={<FaUser />}
+                icon={<MdLockOutline />}
               />
             </div>
             <button

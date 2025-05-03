@@ -6,6 +6,7 @@ const TextInput = ({
   onChange,
   id,
   required = true,
+  name=""
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -22,9 +23,10 @@ const TextInput = ({
       )}
       <input
         id={id}
+        name={name}
         required={required}
         type={type === "password" && showPassword ? "text" : type}
-        className="flex flex-1 p-2 border-[none] h-10 pr-[30px] outline-none text-sm"
+        className="flex flex-1 p-2 border-[none] h-10 pr-[30px] outline-none text-xs"
         placeholder={placeholder}
         onChange={onChange}
       />

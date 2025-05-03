@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styles from './SignupPage.module.css';
-import bgImage from '../assets/image.png';
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import bgImage from "../assets/signup.png";
+import TextInput from "../components/TextInput";
+import { FaRegUser } from "react-icons/fa";
+import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
+import { GrLocation } from "react-icons/gr";
+import { CgProfile } from "react-icons/cg";
+import { RiLockStarLine } from "react-icons/ri";
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
-    userName: '',
-    firstname: '',
-    lastname: '',
-    email: '',
-    address: '',
-    password: '',
-    confirmPassword: ''
+    userName: "",
+    firstname: "",
+    lastname: "",
+    email: "",
+    address: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -28,94 +32,107 @@ const SignUpPage = () => {
     }
 
     try {
-      const response = await fetch('https://localhost:7240/api/Auth/staffregister', {
-        // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/staffregister`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://localhost:7240/api/Auth/staffregister",
+        {
+          // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/staffregister`, {
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
-        alert('Registration successful!');
+        alert("Registration successful!");
       } else {
         const error = await response.json();
-        alert(`Registration failed: ${error.message || 'Unknown Error'}`);
+        alert(`Registration failed: ${error.message || "Unknown Error"}`);
       }
     } catch (error) {
-      alert('An error occurred: ' + error.message);
+      alert("An error occurred: " + error.message);
     }
   };
 
   return (
-    <div className={styles.signupContainer}>
-      <div className={styles.signupForm}>
-        <div className={styles.imageSection} style={{ backgroundImage: `url(${bgImage})` }}></div>
-
-        <div className={styles.formSection}>
-          <h2 className={styles.signupTitle}>Sign Up</h2>
-          <p className={styles.signupSubtitle}>No credit required!</p>
-          <form onSubmit={handleSubmit}>
-            <div className={styles.row}>
-              <input
+    <div className="flex justify-center items-center mt-10">
+      <div className="flex w-[900px] h-[550px] shadow-[0_0_10px_rgba(0,0,0,0.1)] overflow-hidden bg-[white] rounded-[20px]">
+        <div
+          className="flex-1 bg-cover bg-center"
+          style={{ backgroundImage: `url(${bgImage})` }}
+        ></div>
+        <div className="flex-1 flex flex-col justify-center p-10">
+          <h2 className="text-[32px] font-bold text-center mb-2.5">Sign Up</h2>
+          <p className="text-sm text-[#777] text-center mb-[30px]">
+            No credit required!
+          </p>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-[15px]">
+            <div className="flex gap-2.5">
+              <TextInput
+                id="name"
                 type="text"
-                id="firstname"
-                placeholder="First Name"
-                required
+                placeholder="Name"
                 onChange={handleChange}
+                icon={<FaRegUser />}
               />
-              <input
+              <TextInput
                 type="text"
-                id="lastname"
-                placeholder="Last Name"
+                id="username"
+                name="username"
+                placeholder="Username"
                 required
                 onChange={handleChange}
+                icon={<CgProfile />}
               />
             </div>
-            <div className={styles.row}>
-              <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                required
-                onChange={handleChange}
-              />
-              <input
+            <div className="flex gap-2.5">
+              <TextInput
                 type="text"
                 id="address"
                 placeholder="Address"
                 required
                 onChange={handleChange}
+                icon={<GrLocation />}
+              />
+              <TextInput
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                onChange={handleChange}
+                icon={<MdOutlineEmail />}
               />
             </div>
-            <input
-                type="text"
-                id="userName"
-                placeholder="Username"
-                required
-                onChange={handleChange}
-                className={styles.fullInput}
-              />
-            <input
-              type="password"
+
+            <TextInput
               id="password"
-              placeholder="Password"
-              required
-              onChange={handleChange}
-              className={styles.fullInput}
-            />
-            <input
               type="password"
-              id="confirmPassword"
-              placeholder="Re-type password"
-              required
+              placeholder="Password"
               onChange={handleChange}
-              className={styles.fullInput}
+              icon={<MdLockOutline />}
             />
-            <button type="submit" className={styles.signupButton}>Register</button>
+            <TextInput
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              onChange={handleChange}
+              icon={<RiLockStarLine />}
+            />
+            <button
+              type="submit"
+              className="bg-[#5f6060] text-[white] text-base cursor-pointer transition-[background-color] duration-[0.3s] p-3 rounded-md border-[none] hover:bg-[#3b3b3b]"
+            >
+              Register
+            </button>
           </form>
-          <div className={styles.accountText}>
-            Already have an account?  <Link to="/login">Login</Link>
+          <div className="text-sm text-center mt-[15px]">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="font-bold text-[black] hover:underline"
+            >
+              Login
+            </Link>
           </div>
         </div>
       </div>
