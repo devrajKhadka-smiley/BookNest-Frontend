@@ -1,0 +1,60 @@
+/* filepath: src/components/TextInput.css */
+.text-input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    height: 40px;;
+  }
+  
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 8px;
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  .text-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px;
+  }
+
+  input[type="text"] {
+    border: none;
+  }
+  
+  .text-input::placeholder {
+    color: #aaa;
+  }
+
+  .text-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* .icon-container {
+    margin-right: 8px;
+  } */
+  
+  .text-input {
+    flex: 1;
+    padding-right: 30px; /* Space for the toggle button */
+    height: 40px;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%; /* Align vertically to the center */
+    transform: translateY(-50%); 
+    cursor: pointer;
+    color: #888;
+  }

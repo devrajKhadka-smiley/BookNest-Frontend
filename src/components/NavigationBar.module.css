@@ -62,4 +62,22 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+/* Change text color of navbarMidListItem links */
+.navbarMidListItem a {
+  color: #0f0e0e; /* Replace with your desired color */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbarMidListItem a:hover {
+  color: orange; /* Optional hover color */
+}
+
+.navbarRightButton a {
+  color: white;
+  text-decoration: none;
+}
+
+
+
 

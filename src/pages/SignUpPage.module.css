@@ -1,56 +1,103 @@
 .signupContainer {
-  /* min-height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #eef2f3; */
+  margin-top: 50px;
+  /* height: 100vh; */
+  /* background-color: #f8f8f8; */
 }
 
 .signupForm {
-  background-color: #fff;
-  padding: 32px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 900px;
+  height: 550px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: white;
+  /* border: 1px solid black;  */
+}
+
+.imageSection {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+.formSection {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .signupTitle {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
   text-align: center;
-  margin-bottom: 24px;
-  font-size: 24px;
-  color: #333;
 }
 
-.formGroup {
-  margin-bottom: 16px;
+.signupSubtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.formGroup label {
-  display: block;
-  margin-bottom: 8px;
-  color: #444;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.formGroup input {
-  width: 100%;
+.row {
+  display: flex;
+  gap: 10px;
+}
+.row input {
+  flex: 1;
+  padding: 10px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  height: 40px;
+
+}
+
+.fullInput {
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 6px;
+  height: 40px;
+  font-size: 14px;
 }
 
 .signupButton {
-  width: 100%;
   padding: 12px;
-  background-color: orange;
-  color: white;
+  background-color: #5f6060;
   border: none;
+  border-radius: 6px;
+  color: white;
   font-size: 16px;
-  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .signupButton:hover {
-  background-color: rgb(158, 123, 63);
+  background-color: #3b3b3b;
+}
+
+.accountText {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.accountText a {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
