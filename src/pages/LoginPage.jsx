@@ -76,7 +76,7 @@ const LoginPage = () => {
         </div>
   
         <div className={styles.imageSection} style={{ backgroundImage: `url(${bgImage})` }}></div>
-
+        <p>this is for test</p>
       </div>
     </div>
   );
