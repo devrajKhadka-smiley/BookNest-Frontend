@@ -30,12 +30,12 @@ const NavigationBar = () => {
             {/* Right Section: Buttons */}
             <div className="flex gap-2">
                 <Link to="/login">
-                    <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 hover:cursor">
+                    <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 cursor-pointer">
                         Login
                     </button>
                 </Link>
                 <Link to="/signup">
-                    <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 hover:cursor">
+                    <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 cursor-pointer">
                         Sign Up
                     </button>
                 </Link>
