@@ -1,27 +1,47 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './NavigationBar.module.css'
 
 const NavigationBar = () => {
     return (
-        <div className={styles["navbar"]}>
-            <div className={styles["navbar-left"]}>
-                <img src="/src/assets/logo.png" alt="logo" className={styles["navbar-left_logo"]} />
+        <div className="flex justify-between items-center bg-white border-b border-gray-200 px-4 py-2">
+            {/* Left Section: Logo */}
+            <div className="flex items-center">
+                <img src="/src/assets/logo.png" alt="logo" className="w-32 h-auto" />
             </div>
-            <div className={styles.navbarMid}>
-                <ul className={styles.navbarMidList}>
-                    <li className={styles.navbarMidListItem}> <Link to="/">Home</Link></li>
-                    <li className={styles.navbarMidListItem}><Link to="/about">About</Link></li>
-                    <li className={styles.navbarMidListItem}><Link to="/services">Services</Link></li>
-                    <li className={styles.navbarMidListItem}><Link to="/contact">Contact</Link></li>
+
+            {/* Middle Section: Navigation Links */}
+            <div className="hidden md:flex">
+                <ul className="flex gap-6">
+                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
+                        <Link to="/about">About</Link>
+                    </li>
+                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
+                        <Link to="/services">Services</Link>
+                    </li>
+                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
+                        <Link to="/contact">Contact</Link>
+                    </li>
                 </ul>
             </div>
-            <div className={styles.navbarRight}>
-                <button className={styles.navbarRightButton}><Link to="/login">Login</Link></button>
-                <button className={styles.navbarRightButton}><Link to="/signup">Sign Up</Link></button>
+
+            {/* Right Section: Buttons */}
+            <div className="flex gap-2">
+                <Link to="/login">
+                    <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 hover:cursor">
+                        Login
+                    </button>
+                </Link>
+                <Link to="/signup">
+                    <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 hover:cursor">
+                        Sign Up
+                    </button>
+                </Link>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default NavigationBar
+export default NavigationBar;
