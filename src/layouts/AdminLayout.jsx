@@ -4,14 +4,14 @@ import AdminNavbar from "../components/AdminNavbar";
 
 const AdminLayout = () => {
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       {/* Sidebar */}
       <div className="w-64 min-h-screen">
         <AdminNavbar />
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-6 overflow-auto">
         <Outlet /> {/* Renders child routes */}
       </div>
     </div>
