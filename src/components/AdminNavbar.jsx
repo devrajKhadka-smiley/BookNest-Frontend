@@ -31,7 +31,7 @@ const AdminNavbar = () => {
             <Link
               to="/admin/dashboard"
               className={`flex items-center gap-4 px-4 py-3 rounded-md transition-all duration-200 ${
-                location.pathname === "/admin/dashboard"
+                location.pathname === "/admin/dashboard" || location.pathname === "/admin"
                   ? "bg-gray-800 text-white shadow-inner"
                   : "hover:bg-gray-800 hover:text-white"
               }`}
