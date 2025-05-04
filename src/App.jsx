@@ -10,9 +10,11 @@ import Home from "./pages/client/Home";
 import About from "./pages/client/About";
 import Services from "./pages/client/Services";
 import Contact from "./pages/client/Contact";
-// import Dashboard from "./pages/admin/Dashboard";
-// import AddBook from "./pages/admin/AddBook";
-
+import Dashboard from "./pages/admin/Dashboard";
+import AdminBooks from "./pages/admin/Books";
+import Staffs from "./pages/admin/Staffs";
+import Orders from "./pages/admin/Orders";
+import Announcements from "./pages/admin/Announcements";
 function App() {
   return (
     <Router>
@@ -30,8 +32,12 @@ function App() {
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
-          {/* <Route index element={<Dashboard />} /> */}
-          {/* <Route path="add-book" element={<AddBook />} /> */}
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/books" element={<AdminBooks />} />
+          <Route path="/admin/staffs" element={< Staffs />} />
+          <Route path="/admin/orders" element={<Orders />} />
+          <Route path="/admin/announcements" element={<Announcements />} />
+
         </Route>
       </Routes>
     </Router>

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const NavigationBar = () => {
+    const location = useLocation(); // Get the current path
+
     return (
         <div className="flex justify-between items-center bg-white border-b border-gray-200 px-4 py-2">
             {/* Left Section: Logo */}
@@ -12,17 +14,53 @@ const NavigationBar = () => {
             {/* Middle Section: Navigation Links */}
             <div className="hidden md:flex">
                 <ul className="flex gap-6">
-                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
-                        <Link to="/">Home</Link>
+                    <li>
+                        <Link
+                            to="/"
+                            className={`text-sm font-medium ${
+                                location.pathname === '/'
+                                    ? 'text-orange-500'
+                                    : 'text-gray-700 hover:text-orange-500'
+                            }`}
+                        >
+                            Home
+                        </Link>
                     </li>
-                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
-                        <Link to="/about">About</Link>
+                    <li>
+                        <Link
+                            to="/about"
+                            className={`text-sm font-medium ${
+                                location.pathname === '/about'
+                                    ? 'text-orange-500'
+                                    : 'text-gray-700 hover:text-orange-500'
+                            }`}
+                        >
+                            About
+                        </Link>
                     </li>
-                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
-                        <Link to="/services">Services</Link>
+                    <li>
+                        <Link
+                            to="/services"
+                            className={`text-sm font-medium ${
+                                location.pathname === '/services'
+                                    ? 'text-orange-500'
+                                    : 'text-gray-700 hover:text-orange-500'
+                            }`}
+                        >
+                            Services
+                        </Link>
                     </li>
-                    <li className="text-sm font-medium text-gray-700 hover:text-orange-500">
-                        <Link to="/contact">Contact</Link>
+                    <li>
+                        <Link
+                            to="/contact"
+                            className={`text-sm font-medium ${
+                                location.pathname === '/contact'
+                                    ? 'text-orange-500'
+                                    : 'text-gray-700 hover:text-orange-500'
+                            }`}
+                        >
+                            Contact
+                        </Link>
                     </li>
                 </ul>
             </div>
