@@ -1,0 +1,83 @@
+.navbar-left_logo {
+  width: 170px;
+  height: auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.navbarMid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #fff;
+}
+
+.navbarMidList {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbarMidListItem {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbarMidListItem:hover {
+  color: orange;
+}
+
+.navbarRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbarRightButton {
+  padding: 8px 16px;
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+/* Change text color of navbarMidListItem links */
+.navbarMidListItem a {
+  color: #0f0e0e; /* Replace with your desired color */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbarMidListItem a:hover {
+  color: orange; /* Optional hover color */
+}
+
+.navbarRightButton a {
+  color: white;
+  text-decoration: none;
+}
+
+
+
+

@@ -1,0 +1,103 @@
+.signupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  /* height: 100vh; */
+  /* background-color: #f8f8f8; */
+}
+
+.signupForm {
+  display: flex;
+  width: 900px;
+  height: 550px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: white;
+  /* border: 1px solid black;  */
+}
+
+.imageSection {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+.formSection {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signupTitle {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.signupSubtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+.row input {
+  flex: 1;
+  padding: 10px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  height: 40px;
+
+}
+
+.fullInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.signupButton {
+  padding: 12px;
+  background-color: #5f6060;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signupButton:hover {
+  background-color: #3b3b3b;
+}
+
+.accountText {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.accountText a {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
