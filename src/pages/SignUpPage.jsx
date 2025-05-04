@@ -5,7 +5,6 @@ import TextInput from "../components/TextInput";
 import { FaRegUser, FaUserAlt } from "react-icons/fa";
 import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
-import { CgProfile } from "react-icons/cg";
 import { RiLockStarLine } from "react-icons/ri";
 import { BiUser } from "react-icons/bi";
 const SignUpPage = () => {
