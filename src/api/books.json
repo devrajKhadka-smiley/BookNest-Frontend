@@ -1,0 +1,48 @@
+[
+    {
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "The Art of Focus",
+      "price": 499,
+      "discountedPrice": 349,
+      "rating": 4.5,
+      "numberOfReviews": 120,
+      "description": "Learn how to eliminate distractions and concentrate deeply with this practical guide on mastering focus."
+    },
+    {
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Mastering JavaScript",
+      "price": 699,
+      "discountedPrice": 499,
+      "rating": 4.7,
+      "numberOfReviews": 215,
+      "description": "A comprehensive book on modern JavaScript covering ES6+, async programming, and real-world applications."
+    },
+    {
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "The Startup Playbook",
+      "price": 899,
+      "discountedPrice": 639,
+      "rating": 4.2,
+      "numberOfReviews": 85,
+      "description": "Get insights from successful founders and learn the strategies that lead startups to success."
+    },
+    {
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Psychology of Habits",
+      "price": 599,
+      "discountedPrice": 399,
+      "rating": 4.8,
+      "numberOfReviews": 300,
+      "description": "Discover the science behind habits and how you can rewire your brain for lasting change."
+    },
+    {
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Introduction to Data Science",
+      "price": 749,
+      "discountedPrice": 549,
+      "rating": 4.6,
+      "numberOfReviews": 178,
+      "description": "A beginner-friendly guide to data science, covering Python, data analysis, and machine learning basics."
+    }
+  ]
+  

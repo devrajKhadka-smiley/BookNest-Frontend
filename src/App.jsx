@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import NavBar from './Components/NavigationBar'
+import NavigationBar from './components/NavigationBar'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import SignUpPage from './pages/SignUpPage'
 import LoginPage from './pages/LoginPage'
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar />
+      <NavigationBar />
       <Routes>
         <Route path="/" element={<p>This is me</p>} />
         <Route path="/signup" element={<SignUpPage />} /> 

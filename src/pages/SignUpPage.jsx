@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bgImage from "../assets/signup.png";
 import TextInput from "../components/TextInput";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaUserAlt } from "react-icons/fa";
 import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { RiLockStarLine } from "react-icons/ri";
+import { BiUser } from "react-icons/bi";
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
     userName: "",
@@ -74,7 +75,7 @@ const SignUpPage = () => {
                 type="text"
                 placeholder="First Name"
                 onChange={handleChange}
-                icon={<FaRegUser />}
+                icon={<FaUserAlt />}
               />
               <TextInput
                 id="lastname"
@@ -92,7 +93,7 @@ const SignUpPage = () => {
                 placeholder="Username"
                 required
                 onChange={handleChange}
-                icon={<CgProfile />}
+                icon={<BiUser />}
               />
               <TextInput
                 id="email"
