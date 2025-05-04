@@ -28,6 +28,18 @@ const NavigationBar = () => {
                     </li>
                     <li>
                         <Link
+                            to="/books"
+                            className={`text-sm font-medium ${
+                                location.pathname === '/books'
+                                    ? 'text-orange-500'
+                                    : 'text-gray-700 hover:text-orange-500'
+                            }`}
+                        >
+                            Books
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
                             to="/about"
                             className={`text-sm font-medium ${
                                 location.pathname === '/about'

@@ -48,6 +48,106 @@
       "rating": 4.6,
       "numberOfReviews": 178,
       "description": "A beginner-friendly guide to data science, covering Python, data analysis, and machine learning basics."
-    }
+    },
+    {
+      "id": 6,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Deep Work Essentials",
+      "price": 599,
+      "discountedPrice": 429,
+      "rating": 4.4,
+      "numberOfReviews": 140,
+      "description": "Unlock your potential by mastering deep work principles and minimizing digital distractions."
+    },
+    {
+      "id": 7,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "UX Design Fundamentals",
+      "price": 799,
+      "discountedPrice": 589,
+      "rating": 4.3,
+      "numberOfReviews": 110,
+      "description": "Learn the principles of user-centered design and create intuitive, accessible digital products."
+    },
+    {
+      "id": 8,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "The Productivity Code",
+      "price": 649,
+      "discountedPrice": 459,
+      "rating": 4.6,
+      "numberOfReviews": 165,
+      "description": "A powerful framework for boosting daily efficiency and achieving long-term goals."
+    },
+    {
+      "id": 9,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Cloud Computing Simplified",
+      "price": 899,
+      "discountedPrice": 679,
+      "rating": 4.5,
+      "numberOfReviews": 195,
+      "description": "Understand the basics of cloud services, architecture, and deployment strategies."
+    },
+    {
+      "id": 10,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Emotional Intelligence 101",
+      "price": 499,
+      "discountedPrice": 359,
+      "rating": 4.7,
+      "numberOfReviews": 250,
+      "description": "Build better relationships and decision-making skills through emotional self-awareness."
+    },
+    {
+      "id": 11,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "The Minimalist Mindset",
+      "price": 579,
+      "discountedPrice": 419,
+      "rating": 4.3,
+      "numberOfReviews": 130,
+      "description": "Learn how simplifying your environment and routines can lead to a more meaningful life."
+    },
+    {
+      "id": 12,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "React in Action",
+      "price": 849,
+      "discountedPrice": 629,
+      "rating": 4.8,
+      "numberOfReviews": 310,
+      "description": "Master React.js through real-world examples, hooks, and component-driven development."
+    },
+    {
+      "id": 13,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Atomic Thinking",
+      "price": 499,
+      "discountedPrice": 349,
+      "rating": 4.6,
+      "numberOfReviews": 205,
+      "description": "Train your brain to think in small, impactful steps to drive massive growth over time."
+    },
+    {
+      "id": 14,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "Fullstack Roadmap",
+      "price": 899,
+      "discountedPrice": 699,
+      "rating": 4.7,
+      "numberOfReviews": 220,
+      "description": "A practical guide to becoming a fullstack developer with modern tools and best practices."
+    },
+    {
+      "id": 15,
+      "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
+      "title": "The Power of Reflection",
+      "price": 559,
+      "discountedPrice": 389,
+      "rating": 4.4,
+      "numberOfReviews": 145,
+      "description": "Harness the strength of introspection to grow personally and professionally."
+    }  
   ]
   

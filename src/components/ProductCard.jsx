@@ -13,32 +13,32 @@ const ProductCard = ({ book }) => {
   } = book;
 
   return (
-    <div className="bg-white border border-gray-300 shadow hover:shadow-md transition p-4">
+    <div className="bg-white border border-gray-300 shadow hover:shadow-md transition p-3 w-48">
       <img
         src={imageurls}
         alt={title}
-        className="w-full h-auto object-cover rounded-md mb-4"
+        className="w-full h-32 object-cover rounded-md mb-3"
       />
-      <h2 className="text-lg font-semibold text-gray-900 truncate">{title}</h2>
+      <h2 className="text-sm font-semibold text-gray-900 truncate">{title}</h2>
 
       {/* Rating */}
-      <div className="flex items-center text-sm text-yellow-500 mt-1">
+      <div className="flex items-center text-xs text-yellow-500 mt-1">
         ⭐ {rating}
-        <span className="text-gray-500 ml-2">({numberOfReviews})</span>
+        <span className="text-gray-500 ml-1">({numberOfReviews} reviews)</span>
       </div>
 
       {/* Price */}
-      <div className="mt-2 text-sm">
+      <div className="mt-2 text-xs">
         <span className="text-black font-semibold">Rs. {discountedPrice}</span>{' '}
         <span className="line-through text-gray-400">Rs. {price}</span>
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-4 flex gap-2">
-        <button className="flex items-center justify-center basis-[80%] bg-black text-white text-sm py-2 rounded hover:bg-gray-800 gap-2">
-          <FaCartPlus /> Add to Cart
+      <div className="mt-3 flex gap-1">
+        <button className="flex items-center justify-center basis-[70%] bg-black text-white text-xs py-1 rounded hover:bg-gray-800 gap-1">
+          <FaCartPlus /> Add
         </button>
-        <button className="flex items-center justify-center basis-[20%] bg-black text-white text-sm py-2 rounded hover:bg-gray-800">
+        <button className="flex items-center justify-center basis-[30%] bg-black text-white text-xs py-1 rounded hover:bg-gray-800">
           <MdChecklistRtl />
         </button>
       </div>
