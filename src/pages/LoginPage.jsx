@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
-    userName: "",
+    email: "",
     password: "",
   });
 
@@ -21,7 +21,7 @@ const LoginPage = () => {
 
     try {
       const response = await fetch(
-        "https://localhost:7240/api/Auth/stafflogin",
+        "https://localhost:7240/api/Auth/login",
         {
           // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/stafflogin`, {
           method: "POST",
@@ -32,11 +32,12 @@ const LoginPage = () => {
       );
 
       if (response.ok) {
+        const result = await response.json();
+        sessionStorage.setItem("booknestUser", "hehe");
         alert("Login successful! 🎉");
-        // You can redirect user here if needed
       } else {
         const error = await response.json();
-        alert(`Login failed: ${error.message || "Invalid credentials"}`);
+        alert(`Login failed: ${error.message}`);
       }
     } catch (error) {
       alert("An error occurred: " + error.message);
@@ -56,9 +57,9 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col mb-5">
               <TextInput
-                id={"userName"}
-                type="text"
-                placeholder="Enter your username"
+                id={"email"}
+                type="email"
+                placeholder="Enter your Email"
                 onChange={handleChange}
                 icon={<CgProfile />}
               />

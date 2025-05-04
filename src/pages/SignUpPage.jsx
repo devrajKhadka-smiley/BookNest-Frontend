@@ -13,6 +13,7 @@ const SignUpPage = () => {
     firstname: "",
     lastname: "",
     email: "",
+
     address: "",
     password: "",
     confirmPassword: "",
@@ -33,7 +34,7 @@ const SignUpPage = () => {
 
     try {
       const response = await fetch(
-        "https://localhost:7240/api/Auth/staffregister",
+        "https://localhost:7240/api/Auth/register",
         {
           // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/staffregister`, {
           method: "POST",
@@ -69,30 +70,29 @@ const SignUpPage = () => {
           <form onSubmit={handleSubmit} className="flex flex-col gap-[15px]">
             <div className="flex gap-2.5">
               <TextInput
-                id="name"
+                id="firstname"
                 type="text"
-                placeholder="Name"
+                placeholder="First Name"
                 onChange={handleChange}
                 icon={<FaRegUser />}
               />
               <TextInput
+                id="lastname"
                 type="text"
-                id="username"
-                name="username"
-                placeholder="Username"
-                required
+                placeholder="Last Name"
                 onChange={handleChange}
-                icon={<CgProfile />}
+                icon={<FaRegUser />}
               />
             </div>
             <div className="flex gap-2.5">
               <TextInput
                 type="text"
-                id="address"
-                placeholder="Address"
+                id="userName"
+                name="username"
+                placeholder="Username"
                 required
                 onChange={handleChange}
-                icon={<GrLocation />}
+                icon={<CgProfile />}
               />
               <TextInput
                 id="email"
@@ -103,7 +103,14 @@ const SignUpPage = () => {
                 icon={<MdOutlineEmail />}
               />
             </div>
-
+            <TextInput
+              type="text"
+              id="address"
+              placeholder="Address"
+              required
+              onChange={handleChange}
+              icon={<GrLocation />}
+            />
             <TextInput
               id="password"
               type="password"
