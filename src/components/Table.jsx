@@ -1,6 +1,15 @@
 import React from "react";
+import { FaPen } from "react-icons/fa"; // Import Edit icon
 
-const Table = ({ headers, data, className, width="full" }) => {
+const Table = ({ headers, data, className, width = "full" }) => {
+  const keyMap = [
+    "id",
+    "title",
+    "price",
+    "discountedPrice",
+    "rating",
+    "numberOfReviews",
+  ];
   return (
     <table
       className={`w-${width} table-auto border-collapse overflow-hidden rounded-lg shadow-md ${className}`}
@@ -24,12 +33,28 @@ const Table = ({ headers, data, className, width="full" }) => {
               key={rowIndex}
               className="hover:bg-blue-50 transition duration-150"
             >
-              {Object.values(row).map((cell, cellIndex) => (
+              {keyMap.map((key, cellIndex) => (
                 <td key={cellIndex} className="px-6 py-4 text-sm text-gray-700">
-                  {cell !== null && cell !== undefined ? String(cell) : "N/A"}{" "}
-                  {/* Convert to string and handle null/undefined */}
+                  {key === "discountedPrice"
+                    ? row[key] !== null &&
+                      row[key] !== undefined &&
+                      row[key] !== ""
+                      ? String(row[key])
+                      : "N/A"
+                    : row[key] !== null && row[key] !== undefined
+                    ? String(row[key])
+                    : "N/A"}
                 </td>
               ))}
+
+              <td className="px-6 py-4 text-sm text-gray-700">
+                <button
+                  onClick={() => alert(`Edit book with ID: ${row.id}`)}
+                  className="text-black"
+                >
+                  <FaPen />
+                </button>
+              </td>
             </tr>
           ))
         ) : (

@@ -10,6 +10,7 @@ const AdminBooks = () => {
     "Discounted Price",
     "Rating",
     "Reviews",
+    "Action",
   ];
 
   useEffect(() => {
@@ -36,9 +37,21 @@ const AdminBooks = () => {
       <h1 className="text-3xl font-bold mb-4">Books Admin page</h1>
       <p className="text-lg mb-4">Welcome to the books page!</p>
 
-      {/* Display fetched books */}
-      <div className="w-full max-w-4xl mx-auto">
-        <h2 className="text-xl font-semibold mb-2">Books List</h2>
+      {/* Container for Add button + Table */}
+      <div className="w-full max-w-4xl mx-auto relative">
+        {/* Flex container for the button and heading */}
+        <div className="flex items-center justify-between mb-4">
+          {/* Books List Heading on the left */}
+          <h2 className="text-xl font-semibold">Books List</h2>
+
+          {/* Add Product Button on the right */}
+          <button
+            onClick={() => alert("Add Product button clicked")}
+            className="border-2 border-black bg-white text-black px-6 py-2 rounded-xl hover:bg-gray-100 transition"
+          >
+            Add Product
+          </button>
+        </div>
         <Table headers={headers} data={books} />
       </div>
     </div>
