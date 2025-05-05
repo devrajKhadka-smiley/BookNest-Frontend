@@ -109,7 +109,11 @@ const Books = () => {
             min={0}
             max={5000}
             value={priceRange}
-            onChange={setPriceRange}
+            onChange={(newRange) => {
+              setPriceRange(newRange); // Update the price range
+              console.log("Min Price:", newRange[0]);
+              console.log("Max Price:", newRange[1]);
+            }}
             allowCross={false}
             styles={{
               track: { backgroundColor: "orange", height: 6 },
