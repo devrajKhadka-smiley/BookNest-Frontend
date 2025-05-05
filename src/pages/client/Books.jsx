@@ -8,6 +8,18 @@ const Books = () => {
   const [loading, setLoading] = useState(true);
   const [priceRange, setPriceRange] = useState([0, 5000]);
 
+  // Pagination States
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // Set the number of items per page
+  // Pagination Logic
+  const totalPages = Math.ceil(books.length / itemsPerPage); // Total number of pages
+  const startIndex = (currentPage - 1) * itemsPerPage; // Starting index of books to display
+  const currentBooks = books.slice(startIndex, startIndex + itemsPerPage); // Books to show on current page
+
+  // Change Page
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   useEffect(() => {
     const fetchAllBooks = async () => {
       try {
@@ -165,7 +177,7 @@ const Books = () => {
       </div>
 
       {/* Books Section */}
-      <div className="w-3/4 p-4">
+      <div className="w-3/4 p-4 flex flex-col">
         <div className="flex justify-between items-center mb-6">
           {/* Search Bar */}
           <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 w-1/2">
@@ -174,7 +186,10 @@ const Books = () => {
               placeholder="Search book by title"
               className="flex-1 outline-none text-sm text-gray-700"
             />
-            <FaSearch className="text-gray-500 hover:cursor-pointer" size={20}  />
+            <FaSearch
+              className="text-gray-500 hover:cursor-pointer"
+              size={20}
+            />
           </div>
 
           {/* Sort By */}
@@ -197,9 +212,42 @@ const Books = () => {
           </div>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-6">
-          {books.map((book) => (
+          {currentBooks.map((book) => (
             <ProductCard key={book.id} book={book} />
           ))}
+        </div>
+        {/* Pagination controls */}
+        <div className="flex justify-center items-center mt-6 gap-2">
+          <button
+            onClick={() => changePage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-2 py-1 bg-gray-200 text-gray-700 rounded-sm text-sm disabled:opacity-50"
+          >
+            Previous
+          </button>
+
+          {/* Page Numbers */}
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => changePage(index + 1)}
+              className={`px-2 py-1 rounded-sm text-sm text-gray-700 ${
+                currentPage === index + 1
+                  ? "bg-[#359BA2] text-white"
+                  : "bg-gray-100"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() => changePage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-2 py-1 bg-gray-200 text-gray-700 rounded-sm text-sm disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
