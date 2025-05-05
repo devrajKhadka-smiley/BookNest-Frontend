@@ -1,9 +1,9 @@
 import React from "react";
 
-const Table = ({ headers, data, className }) => {
+const Table = ({ headers, data, className, width="full" }) => {
   return (
     <table
-      className={`w-full table-auto border-collapse overflow-hidden rounded-lg shadow-md ${className}`}
+      className={`w-${width} table-auto border-collapse overflow-hidden rounded-lg shadow-md ${className}`}
     >
       <thead className="bg-blue-100 text-blue-900">
         <tr>
