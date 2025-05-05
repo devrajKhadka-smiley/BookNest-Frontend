@@ -13,13 +13,16 @@ const ProductCard = ({ book }) => {
   } = book;
 
   return (
-    <div className="transition-transform transform hover:scale-102 hover:cursor-pointer duration-200 border rounded-lg shadow-md p-4 bg-white">
+    <div className="transition-transform transform hover:scale-102 hover:cursor-pointer duration-200 border rounded-lg shadow-md p-4 bg-white hover:bg-gray-50 w-[250px]">
+      {/* Product Image */}
       <img
         src={imageurls}
         alt={title}
-        className="w-full h-32 object-cover rounded-md mb-3"
+        className="w-full h-40 object-cover rounded-md mb-3 transition-all duration-200 hover:opacity-80"
       />
-      <h2 className="text-sm font-semibold text-gray-900 truncate">{title}</h2>
+
+      {/* Product Title */}
+      <h2 className="text-sm font-semibold text-gray-900 truncate hover:text-[#359BA2]">{title}</h2>
 
       {/* Rating */}
       <div className="flex items-center text-xs text-yellow-500 mt-1">
@@ -29,16 +32,28 @@ const ProductCard = ({ book }) => {
 
       {/* Price */}
       <div className="mt-2 text-xs">
-        <span className="text-black font-semibold">Rs. {discountedPrice}</span>{' '}
-        <span className="line-through text-gray-400">Rs. {price}</span>
+        {/* Discounted Price */}
+        {discountedPrice && (
+          <span className="text-[#FF5F00] font-semibold mr-1">Rs. {discountedPrice}</span>
+        )}
+        {/* Original Price */}
+        <span
+          className={`${discountedPrice ? "line-through text-gray-400" : "text-[#2B2B2B] font-semibold"}`}
+        >
+          Rs. {price}
+        </span>
       </div>
 
       {/* Action Buttons */}
       <div className="mt-3 flex gap-1">
-        <button className="flex items-center justify-center basis-[70%] bg-black text-white text-xs py-1 rounded hover:bg-gray-800 gap-1">
-          <FaCartPlus /> Add
+        {/* Add to Cart Button */}
+        <button className="flex items-center justify-center basis-[70%] bg-[#359BA2] text-white text-xs py-1.5 rounded hover:bg-[#2c8a90] gap-1 transition-colors duration-300">
+          <FaCartPlus />
+          Add to cart
         </button>
-        <button className="flex items-center justify-center basis-[30%] bg-black text-white text-xs py-1 rounded hover:bg-gray-800">
+
+        {/* Wishlist Button */}
+        <button className="flex items-center justify-center basis-[30%] bg-[#FF5F00] text-white text-xs py-1.5 rounded hover:bg-[#e55400] transition-colors duration-300">
           <MdChecklistRtl />
         </button>
       </div>

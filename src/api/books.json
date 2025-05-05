@@ -124,7 +124,6 @@
       "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
       "title": "Atomic Thinking",
       "price": 499,
-      "discountedPrice": 349,
       "rating": 4.6,
       "numberOfReviews": 205,
       "description": "Train your brain to think in small, impactful steps to drive massive growth over time."
@@ -134,7 +133,6 @@
       "imageurls": "https://i.pinimg.com/474x/48/77/5b/48775b9a474171a8caebf00394493401.jpg",
       "title": "Fullstack Roadmap",
       "price": 899,
-      "discountedPrice": 699,
       "rating": 4.7,
       "numberOfReviews": 220,
       "description": "A practical guide to becoming a fullstack developer with modern tools and best practices."
