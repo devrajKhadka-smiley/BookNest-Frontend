@@ -33,7 +33,7 @@ const AdminBooks = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-4">Books Admin page</h1>
       <p className="text-lg mb-4">Welcome to the books page!</p>
 
       {/* Display fetched books */}
