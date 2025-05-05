@@ -17,7 +17,7 @@ const GridChip = ({ data = [], onEdit }) => {
   const letters = Object.keys(groupedData).sort();
 
   return (
-    <Grid container columnSpacing={3} rowSpacing={3} sx={{ width: "80%", margin: "0 auto" }}>
+    <Grid container columnSpacing={3} rowSpacing={3} sx={{ width: "100%", margin: "0 auto" }}>
       {letters.map((letter) => (
         <Grid key={letter}>
           <Paper
