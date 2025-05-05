@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-
+import { FaSearch } from "react-icons/fa";
 const Books = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,7 +53,7 @@ const Books = () => {
               >
                 <input
                   type="checkbox"
-                  className="mr-2 accent-orange-500"
+                  className="mr-2 accent-orange-400"
                   style={{ width: 18, height: 18 }}
                 />
                 {genre}
@@ -78,7 +78,7 @@ const Books = () => {
               >
                 <input
                   type="checkbox"
-                  className="mr-2 accent-orange-500"
+                  className="mr-2 accent-orange-400"
                   style={{ width: 18, height: 18 }}
                 />
                 {author}
@@ -134,7 +134,7 @@ const Books = () => {
               >
                 <input
                   type="checkbox"
-                  className="mr-2 accent-orange-500"
+                  className="mr-2 accent-orange-400"
                   style={{ width: 18, height: 18 }}
                 />
                 {stars} {stars === 1 ? "Star" : "Stars"}
@@ -154,7 +154,7 @@ const Books = () => {
               >
                 <input
                   type="checkbox"
-                  className="mr-2 accent-orange-500"
+                  className="mr-2 accent-orange-400"
                   style={{ width: 18, height: 18 }}
                 />
                 {language}
@@ -166,6 +166,36 @@ const Books = () => {
 
       {/* Books Section */}
       <div className="w-3/4 p-4">
+        <div className="flex justify-between items-center mb-6">
+          {/* Search Bar */}
+          <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 w-1/2">
+            <input
+              type="text"
+              placeholder="Search book by title"
+              className="flex-1 outline-none text-sm text-gray-700"
+            />
+            <FaSearch className="text-gray-500 hover:cursor-pointer" size={20}  />
+          </div>
+
+          {/* Sort By */}
+          <div className="flex items-center">
+            <label
+              htmlFor="sort"
+              className="text-sm font-medium text-gray-700 mr-2"
+            >
+              Sort By:
+            </label>
+            <select
+              id="sort"
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+            >
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating-desc">Rating: High to Low</option>
+              <option value="rating-asc">Rating: Low to High</option>
+            </select>
+          </div>
+        </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-6">
           {books.map((book) => (
             <ProductCard key={book.id} book={book} />
