@@ -16,6 +16,9 @@ import Staffs from "./pages/admin/Staffs";
 import Orders from "./pages/admin/Orders";
 import Announcements from "./pages/admin/Announcements";
 import BookDetail from "./pages/client/BookDetail";
+import Genres from "./pages/admin/Genres";
+import Publications from "./pages/admin/Publications";
+import Authors from "./pages/admin/Authors";
 function App() {
   return (
     <Router>
@@ -36,10 +39,13 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/books" element={<AdminBooks />} />
-          <Route path="/admin/staffs" element={< Staffs />} />
+          <Route path="/admin/staffs" element={<Staffs />} />
           <Route path="/admin/orders" element={<Orders />} />
           <Route path="/admin/announcements" element={<Announcements />} />
-
+          <Route path="/admin/genres" element={<Genres />} />
+          <Route path="/admin/orders" element={<Orders />} />
+          <Route path="/admin/publications" element={<Publications />} />
+          <Route path="/admin/authors" element={<Authors />} />
         </Route>
       </Routes>
     </Router>
