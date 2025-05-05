@@ -13,7 +13,7 @@ const ProductCard = ({ book }) => {
   } = book;
 
   return (
-    <div className="bg-white border border-gray-300 shadow hover:shadow-md transition p-3 w-48">
+    <div className="transition-transform transform hover:scale-102 hover:cursor-pointer duration-200 border rounded-lg shadow-md p-4 bg-white">
       <img
         src={imageurls}
         alt={title}
