@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import NavigationBar from "./components/NavigationBar";
 import AdminLayout from "./layouts/AdminLayout";
 import ClientLayout from "./layouts/ClientLayout";
+import StaffLayout from './layouts/StaffLayout'; 
 import Books from "./pages/client/Books";
 import Home from "./pages/client/Home";
 import About from "./pages/client/About";
@@ -19,6 +20,8 @@ import BookDetail from "./pages/client/BookDetail";
 import Genres from "./pages/admin/Genres";
 import Publications from "./pages/admin/Publications";
 import Authors from "./pages/admin/Authors";
+import StaffLoginPage from "./pages/staff/StaffLoginPage";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
 function App() {
   return (
     <Router>
@@ -33,10 +36,12 @@ function App() {
           <Route path="contact" element={<Contact />} /> {/* New Route */}
           <Route path="signup" element={<SignUpPage />} />
           <Route path="login" element={<LoginPage />} />
+          
         </Route>
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin/adminloginpage" element={<AdminLoginPage />} />  
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/books" element={<AdminBooks />} />
           <Route path="/admin/staffs" element={<Staffs />} />
@@ -47,7 +52,13 @@ function App() {
           <Route path="/admin/publications" element={<Publications />} />
           <Route path="/admin/authors" element={<Authors />} />
         </Route>
-      </Routes>
+
+
+
+        {/* Staff Routes */}
+        <Route path="/staff" element={<StaffLayout />} />
+        <Route path="/staffloginpage" element={<StaffLoginPage />} />
+         </Routes>
     </Router>
   );
 }
