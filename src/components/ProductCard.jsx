@@ -1,9 +1,11 @@
 import React from 'react';
 import { FaCartPlus } from 'react-icons/fa';
 import { MdChecklistRtl } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ book }) => {
   const {
+    id,
     imageurls,
     title,
     price,
@@ -12,8 +14,10 @@ const ProductCard = ({ book }) => {
     numberOfReviews,
   } = book;
 
+  const navigate = useNavigate();
   return (
-    <div className="transition-transform transform hover:scale-102 hover:cursor-pointer duration-200 border rounded-lg shadow-md p-4 bg-white hover:bg-gray-50 w-[250px]">
+    <div onClick={() => navigate(`/book/${id}`)}
+    className="transition-transform transform hover:scale-102 hover:cursor-pointer duration-200 border rounded-lg shadow-md p-4 bg-white hover:bg-gray-50 w-[250px]">
       {/* Product Image */}
       <img
         src={imageurls}

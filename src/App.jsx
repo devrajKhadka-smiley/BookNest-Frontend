@@ -15,6 +15,7 @@ import AdminBooks from "./pages/admin/Books";
 import Staffs from "./pages/admin/Staffs";
 import Orders from "./pages/admin/Orders";
 import Announcements from "./pages/admin/Announcements";
+import BookDetail from "./pages/client/BookDetail";
 function App() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<ClientLayout />}>
           <Route index element={<Home />} />
           <Route path="books" element={<Books />} />
+          <Route path="book/:id" element={<BookDetail />} />
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} /> {/* New Route */}
           <Route path="contact" element={<Contact />} /> {/* New Route */}
