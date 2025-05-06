@@ -11,6 +11,7 @@ import Home from "./pages/client/Home";
 import About from "./pages/client/About";
 import Services from "./pages/client/Services";
 import Contact from "./pages/client/Contact";
+import Whitelist from "./pages/client/WhitelistPage";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminBooks from "./pages/admin/Books";
 import Staffs from "./pages/admin/Staffs";
@@ -34,6 +35,7 @@ function App() {
           <Route path="books" element={<Books />} />
           <Route path="book/:id" element={<BookDetail />} />
           <Route path="about" element={<About />} />
+          <Route path="WhitelistPage" element={<Whitelist />} />
           <Route path="services" element={<Services />} /> {/* New Route */}
           <Route path="contact" element={<Contact />} /> {/* New Route */}
           <Route path="signup" element={<SignUpPage />} />
