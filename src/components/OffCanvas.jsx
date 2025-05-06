@@ -7,19 +7,17 @@ function OffCanvas({ show, onClose, title, children }) {
         style={{
           backgroundColor: 'rgba(0, 0, 0, 0.6)', // Semi-transparent black background
         }}
-        onClick={onClose}
       >
         <div
           className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform ${
             show ? 'translate-x-0' : 'translate-x-full'
           }`}
-          onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between p-4 border-b">
             <h5 className="text-lg font-semibold">{title}</h5>
             <button
-              className="text-gray-500 hover:text-gray-700"
-              onClick={onClose}
+              className="text-gray-500 hover:text-gray-700 hover:cursor-pointer text-2xl"
+              onClick={onClose} // Close only when this button is clicked
             >
               &times;
             </button>
@@ -31,4 +29,3 @@ function OffCanvas({ show, onClose, title, children }) {
   }
   
   export default OffCanvas;
-  

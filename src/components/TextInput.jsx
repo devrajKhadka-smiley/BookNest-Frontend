@@ -6,7 +6,9 @@ const TextInput = ({
   onChange,
   id,
   required = true,
-  name=""
+  name="",
+  readOnly=false,
+  value="",
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -29,6 +31,8 @@ const TextInput = ({
         className="flex flex-1 p-2 border-[none] h-10 pr-[30px] outline-none text-xs"
         placeholder={placeholder}
         onChange={onChange}
+        readOnly={readOnly}
+        value={value}
       />
       {type === "password" && (
         <div
