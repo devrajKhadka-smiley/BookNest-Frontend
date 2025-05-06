@@ -1,7 +1,7 @@
-import React from 'react';
-import { FaCartPlus } from 'react-icons/fa';
-import { MdChecklistRtl } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { FaCartPlus } from "react-icons/fa";
+import { MdChecklistRtl, MdDelete } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ book }) => {
   const {
@@ -15,9 +15,33 @@ const ProductCard = ({ book }) => {
   } = book;
 
   const navigate = useNavigate();
+
+  // Handle adding to wishlist
+  const handleAddToWishlist = () => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    if (!wishlist.some((b) => b.id === id)) {
+      wishlist.push(book);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    }
+  };
+
+  // Handle removing from wishlist
+  const handleRemoveFromWishlist = () => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const updatedWishlist = wishlist.filter((b) => b.id !== id);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+  };
+
+  // Check if the book is in the wishlist
+  const isInWishlist = JSON.parse(localStorage.getItem("wishlist"))?.some(
+    (b) => b.id === id
+  );
+
   return (
-    <div onClick={() => navigate(`/book/${id}`)}
-    className="transition-transform transform hover:scale-102 hover:cursor-pointer duration-200 border rounded-lg shadow-md p-4 bg-white hover:bg-gray-50 w-[250px]">
+    <div
+      onClick={() => navigate(`/book/${id}`)}
+      className="transition-transform transform hover:scale-102 hover:cursor-pointer duration-200 border rounded-lg shadow-md p-4 bg-white hover:bg-gray-50 w-[250px]"
+    >
       {/* Product Image */}
       <img
         src={imageurls}
@@ -26,7 +50,9 @@ const ProductCard = ({ book }) => {
       />
 
       {/* Product Title */}
-      <h2 className="text-sm font-semibold text-gray-900 truncate hover:text-[#359BA2]">{title}</h2>
+      <h2 className="text-sm font-semibold text-gray-900 truncate hover:text-[#359BA2]">
+        {title}
+      </h2>
 
       {/* Rating */}
       <div className="flex items-center text-xs text-yellow-500 mt-1">
@@ -38,11 +64,17 @@ const ProductCard = ({ book }) => {
       <div className="mt-2 text-xs">
         {/* Discounted Price */}
         {discountedPrice && (
-          <span className="text-[#FF5F00] font-semibold mr-1">Rs. {discountedPrice}</span>
+          <span className="text-[#FF5F00] font-semibold mr-1">
+            Rs. {discountedPrice}
+          </span>
         )}
         {/* Original Price */}
         <span
-          className={`${discountedPrice ? "line-through text-gray-400" : "text-[#2B2B2B] font-semibold"}`}
+          className={`${
+            discountedPrice
+              ? "line-through text-gray-400"
+              : "text-[#2B2B2B] font-semibold"
+          }`}
         >
           Rs. {price}
         </span>
@@ -56,9 +88,14 @@ const ProductCard = ({ book }) => {
           Add to cart
         </button>
 
-        {/* Wishlist Button */}
-        <button className="flex items-center justify-center basis-[30%] bg-[#FF5F00] text-white text-xs py-1.5 rounded hover:bg-[#e55400] transition-colors duration-300">
-          <MdChecklistRtl />
+        {/* Wishlist/Trash Button */}
+        <button
+          onClick={
+            isInWishlist ? handleRemoveFromWishlist : handleAddToWishlist
+          }
+          className="flex items-center justify-center basis-[30%] bg-[#FF5F00] text-white text-xs py-1.5 rounded hover:bg-[#e55400] transition-colors duration-300"
+        >
+          {isInWishlist ? <MdDelete /> : <MdChecklistRtl />}
         </button>
       </div>
     </div>
