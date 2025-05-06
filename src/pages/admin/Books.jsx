@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Table from "../../components/Table";
-
+import OffCanvas from "../../components/OffCanvas";
 const AdminBooks = () => {
-  const [books, setBooks] = useState([]); 
+  const [books, setBooks] = useState([]);
   const headers = [
     "S.No",
     "Title",
@@ -10,8 +10,13 @@ const AdminBooks = () => {
     "Discounted Price",
     "Stock",
     "Sold Piece",
-    "On Sale"
+    "On Sale",
   ];
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     fetch("https://localhost:7240/AdminGetAllBooks")
@@ -20,7 +25,6 @@ const AdminBooks = () => {
           throw new Error("Failed to fetch books");
         }
         return response.json();
-
       })
       .then((data) => {
         console.log(data);
@@ -33,7 +37,7 @@ const AdminBooks = () => {
           bookSold: book.bookSold,
           bookIsOnSale: book.isOnSale,
         }));
-        console.log("Fetched books:", filteredData); 
+        console.log("Fetched books:", filteredData);
         setBooks(filteredData);
       })
       .catch((error) => console.error("Error fetching books:", error));
@@ -46,9 +50,20 @@ const AdminBooks = () => {
 
       {/* Display fetched books */}
       <div className="w-full max-w-4xl mx-auto">
-        <h2 className="text-xl font-semibold mb-2">Books List</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold">Genres List</h2>
+          <button
+            onClick={handleShow}
+            className="border-2 border-black bg-white text-black px-6 py-2 rounded-xl hover:bg-gray-100 transition"
+          >
+            Add Books
+          </button>
+        </div>
         <Table headers={headers} data={books} />
       </div>
+      <OffCanvas show={show} onClose={handleClose} title="Add a book">
+        Add book form
+      </OffCanvas>
     </div>
   );
 };
