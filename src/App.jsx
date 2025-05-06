@@ -53,10 +53,9 @@ function App() {
           <Route path="/admin/publications" element={<Publications />} />
           <Route path="/admin/authors" element={<Authors />} />
         </Route>
-
+        <Route path="/staff/login" element={<StaffLoginPage />} />
         {/* Staff Routes */}
         <Route path="/staff" element={<StaffLayout />}>
-          <Route path="/staff/staffloginpage" element={<StaffLoginPage />} />
           <Route path="/staff/staff-dashboard" element={<StaffDashboard />} />
           <Route path="/staff/staff-orders" element={<StaffOrders />} />
         </Route>

@@ -5,7 +5,7 @@ import TextInput from "../../components/TextInput";
 import { MdLockOutline } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { Cookie } from "@mui/icons-material";
-import Cookies from "js-cookie"; 
+import Cookies from "js-cookie";
 
 const AdminLoginPage = () => {
   const [formData, setFormData] = useState({
@@ -24,12 +24,15 @@ const AdminLoginPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://localhost:7240/api/Auth/admin/login", {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://localhost:7240/api/Auth/admin/login",
+        {
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const result = await response.json();
 
@@ -40,7 +43,6 @@ const AdminLoginPage = () => {
       } else {
         alert(`Login failed: ${result.message || "Unknown error"}`);
       }
-
     } catch (error) {
       alert("An error occurred: " + error.message);
     } finally {
@@ -49,11 +51,16 @@ const AdminLoginPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center mt-10">
+    <div
+      className="flex justify-center items-center h-screen overflow-hidden"
+      style={{ backgroundColor: "#f8f9fa" }} // Optional: Add a background color
+    >
       <div className="flex w-[900px] h-[500px] bg-white overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.1)] rounded-[20px]">
         {/* Left side - Login form */}
         <div className="flex-1 flex flex-col justify-center px-[30px] py-10">
-          <h2 className="text-[32px] font-bold text-center mb-2">Admin Login</h2>
+          <h2 className="text-[32px] font-bold text-center mb-2">
+            Admin Login
+          </h2>
           <p className="italic text-[#666] text-sm text-center mb-[30px]">
             Login to manage your system
           </p>
