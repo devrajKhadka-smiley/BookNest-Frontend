@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import bgImage from "../../assets/adminlogin.jpg";
 import TextInput from "../../components/TextInput";
 import { MdLockOutline } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
+import { Cookie } from "@mui/icons-material";
+import Cookies from "js-cookie"; 
 
 const AdminLoginPage = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +24,7 @@ const AdminLoginPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://localhost:7240/api/Auth/adminlogin", {
+      const response = await fetch("https://localhost:7240/api/Auth/admin/login", {
         method: "POST",
         mode: "cors",
         headers: { "Content-Type": "application/json" },
@@ -32,11 +34,13 @@ const AdminLoginPage = () => {
       const result = await response.json();
 
       if (response.ok) {
-        sessionStorage.setItem("booknestAdmin", JSON.stringify(result));
+        Cookies.set("BookNest", result.token, {});
         alert("Admin Login successful!");
+        window.location.href = "/admin/dashboard";
       } else {
         alert(`Login failed: ${result.message || "Unknown error"}`);
       }
+
     } catch (error) {
       alert("An error occurred: " + error.message);
     } finally {

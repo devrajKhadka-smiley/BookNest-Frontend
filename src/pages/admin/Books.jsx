@@ -2,30 +2,38 @@ import React, { useState, useEffect } from "react";
 import Table from "../../components/Table";
 
 const AdminBooks = () => {
-  const [books, setBooks] = useState([]); // State to store books
+  const [books, setBooks] = useState([]); 
   const headers = [
-    "ID",
+    "S.No",
     "Title",
-    "Price",
+    "ISBN",
     "Discounted Price",
-    "Rating",
-    "Reviews",
+    "Stock",
+    "Sold Piece",
+    "On Sale"
   ];
 
   useEffect(() => {
-    // Fetch books from the JSON file
-    fetch("/src/api/Books.json")
+    fetch("https://localhost:7240/AdminGetAllBooks")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch books");
         }
         return response.json();
+
       })
       .then((data) => {
-        const filteredData = data.map(
-          ({ imageurls, description, ...rest }) => rest
-        );
-        console.log("Fetched books:", filteredData); // Log the fetched data
+        console.log(data);
+        const filteredData = data.map((book, index) => ({
+          sNo: index + 1,
+          bookTitle: book.bookTitle,
+          bookIsbn: book.bookISBN,
+          bookFinalPrice: book.bookFinalPrice,
+          bookStock: book.bookStock,
+          bookSold: book.bookSold,
+          bookIsOnSale: book.isOnSale,
+        }));
+        console.log("Fetched books:", filteredData); 
         setBooks(filteredData);
       })
       .catch((error) => console.error("Error fetching books:", error));
