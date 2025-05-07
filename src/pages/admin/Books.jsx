@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Table from "../../components/Table";
+import axios from "axios";
 import OffCanvas from "../../components/OffCanvas";
 import TextInput from "../../components/TextInput";
 
-const AddBookForm = () => {
+const AddBookForm = ({ fetchBooks }) => {
   const [formData, setFormData] = useState({
     bookTitle: "",
     bookISBN: "",
@@ -17,13 +18,22 @@ const AddBookForm = () => {
     discountEndDate: "",
     bookSold: 0,
   });
+
   const languages = ["English", "Nepali"];
   const textFields = [
     { placeholder: "Book Title", value: "bookTitle" },
     { placeholder: "Book ISBN", value: "bookISBN" },
+    { placeholder: "Book Description", value: "bookDescription" },
+    { placeholder: "Book Publication Id", value: "bookPublicatin" },
     { placeholder: "Book Stock", value: "bookStock", type: "number" },
     { placeholder: "Price", value: "bookPrice", type: "number" },
+    { placeholder: "Book Format", value: "bookFormat", type: "number" },
     { placeholder: "Discount Percent", value: "discountPercent" },
+    { placeholder: "Discount Start Date", value: "Discount Start Date" },
+    { placeholder: "Discount End Date", value: "Discount End Date Date" },
+    { placeholder: "Genre ID", value: "Genre Id" },
+    { placeholder: "Badge ID", value: "Badge Id" },
+    { placeholder: "Author ID", value: "Author Id" },
     {
       placeholder: "Book Final Price",
       value: "bookFinalPrice",
@@ -38,7 +48,7 @@ const AddBookForm = () => {
     setFormData((prev) => {
       const updatedFormData = {
         ...prev,
-        [name]: type === "checkbox" ? checked : value, // Handle checkbox for isOnSale
+        [name]: type === "checkbox" ? checked : value,
       };
 
       if (name === "bookPrice" || name === "discountPercent") {
@@ -56,24 +66,34 @@ const AddBookForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    axios
+      .post("https://localhost:7240/AdminAddBook", formData)
+      .then(() => {
+        alert("Book added successfully!");
+        fetchBooks();
+      })
+      .catch((error) => {
+        console.error("Error adding book:", error);
+        alert("Failed to add book.");
+      });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {textFields.map(({ placeholder, value, readOnly }) => (
+      {textFields.map(({ placeholder, value, readOnly, type }) => (
         <div className="flex flex-col mb-5" key={value}>
           <TextInput
             id={value}
             name={value}
-            type="text"
+            type={type || "text"}
             placeholder={placeholder}
-            value={formData[value]} // Dynamically bind the value
+            value={formData[value]}
             onChange={handleChange}
-            readOnly={readOnly || false} // Make "Book Final Price" read-only
+            readOnly={readOnly || false}
           />
         </div>
       ))}
+
       {/* Language Dropdown */}
       <div className="flex flex-col mb-5">
         <select
@@ -93,6 +113,7 @@ const AddBookForm = () => {
           ))}
         </select>
       </div>
+
       {/* On Sale Checkbox */}
       <div className="flex items-center mb-5">
         <input
@@ -148,6 +169,7 @@ const AddBookForm = () => {
     </form>
   );
 };
+
 const AdminBooks = () => {
   const [books, setBooks] = useState([]);
   const headers = [
@@ -165,29 +187,38 @@ const AdminBooks = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-    fetch("https://localhost:7240/AdminGetAllBooks")
+  const fetchBooks = () => {
+    fetch("https://localhost:7240/api/book/AdminGetAllBooks")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch books");
         }
         return response.json();
       })
-      .then((data) => {
-        console.log(data);
-        const filteredData = data.map((book, index) => ({
-          sNo: index + 1,
-          bookTitle: book.bookTitle,
-          bookIsbn: book.bookISBN,
-          bookFinalPrice: book.bookFinalPrice,
-          bookStock: book.bookStock,
-          bookSold: book.bookSold,
-          bookIsOnSale: book.isOnSale,
-        }));
-        console.log("Fetched books:", filteredData);
-        setBooks(filteredData);
+      .then((response) => {
+        console.log("Fetched response:", response);
+        if (response.data && Array.isArray(response.data)) {
+          const filteredData = response.data.map((book, index) => ({
+            sNo: index + 1,
+            bookTitle: book.bookTitle,
+            bookIsbn: book.bookISBN,
+            bookFinalPrice: book.bookFinalPrice,
+            bookStock: book.bookStock,
+            bookSold: book.soldPiece,
+            bookIsOnSale: book.onSale,
+          }));
+          setBooks(filteredData);
+        } else {
+          console.error("Unexpected response format:", response);
+        }
       })
-      .catch((error) => console.error("Error fetching books:", error));
+      .catch((error) => {
+        console.error("Error fetching books:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchBooks();
   }, []);
 
   return (
@@ -209,7 +240,7 @@ const AdminBooks = () => {
         <Table headers={headers} data={books} />
       </div>
       <OffCanvas show={show} onClose={handleClose} title="Add a book">
-        <AddBookForm />
+        <AddBookForm fetchBooks={fetchBooks} />
       </OffCanvas>
     </div>
   );

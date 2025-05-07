@@ -5,7 +5,9 @@ const NavigationBar = () => {
     const location = useLocation(); // Get the current path
 
     return (
-        <div className="flex justify-between items-center bg-white border-b border-gray-200 px-4 py-2">
+        // <div className="sticky top-0 z-50 flex justify-between items-center bg-white border-b border-gray-200 px-4 py-2">
+
+        <div className="sticky top-0 z-50 flex justify-between items-center bg-white border-b border-gray-200 px-4 py-2">
             {/* Left Section: Logo */}
             <div className="flex items-center">
                 <img src="/src/assets/logo.png" alt="logo" className="w-32 h-auto" />

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bgImage from "../assets/signup.png";
+import { useNavigate } from "react-router-dom";
 import TextInput from "../components/TextInput";
 import { FaRegUser, FaUserAlt } from "react-icons/fa";
 import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
 import { RiLockStarLine } from "react-icons/ri";
 import { BiUser } from "react-icons/bi";
-const SignUpPage = () => {
+const SignUpPage = () => 
+  {
+    
   const [formData, setFormData] = useState({
     userName: "",
     firstname: "",
@@ -18,9 +21,10 @@ const SignUpPage = () => {
     password: "",
     confirmPassword: "",
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { id, value } = e.target;
+    console.log(`${id}: ${value}`);
     setFormData({ ...formData, [id]: value });
   };
 
@@ -46,6 +50,7 @@ const SignUpPage = () => {
 
       if (response.ok) {
         alert("Registration successful!");
+        navigate("/login");
       } else {
         const error = await response.json();
         alert(`Registration failed: ${error.message || "Unknown Error"}`);
@@ -74,6 +79,7 @@ const SignUpPage = () => {
                 type="text"
                 placeholder="First Name"
                 onChange={handleChange}
+                value={formData.firstname}
                 icon={<FaUserAlt />}
               />
               <TextInput
@@ -81,6 +87,7 @@ const SignUpPage = () => {
                 type="text"
                 placeholder="Last Name"
                 onChange={handleChange}
+                value={formData.lastname}
                 icon={<FaRegUser />}
               />
             </div>
@@ -91,6 +98,7 @@ const SignUpPage = () => {
                 name="username"
                 placeholder="Username"
                 required
+                value={formData.userName}
                 onChange={handleChange}
                 icon={<BiUser />}
               />
@@ -99,6 +107,7 @@ const SignUpPage = () => {
                 name="email"
                 type="email"
                 placeholder="Email"
+                value={formData.email}
                 onChange={handleChange}
                 icon={<MdOutlineEmail />}
               />
@@ -108,6 +117,7 @@ const SignUpPage = () => {
               id="address"
               placeholder="Address"
               required
+              value={formData.address}
               onChange={handleChange}
               icon={<GrLocation />}
             />
@@ -116,6 +126,7 @@ const SignUpPage = () => {
               type="password"
               placeholder="Password"
               onChange={handleChange}
+              value={formData.password}
               icon={<MdLockOutline />}
             />
             <TextInput
@@ -123,6 +134,7 @@ const SignUpPage = () => {
               type="password"
               placeholder="Confirm Password"
               onChange={handleChange}
+              value={formData.confirmPassword}
               icon={<RiLockStarLine />}
             />
             <button

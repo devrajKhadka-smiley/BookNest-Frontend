@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GridChip from "../../components/GridChip";
 import Modal from "../../components/modal";
 import { useState } from "react";
+import axios from "axios";
 
 const AddAuthorForm = ({ onClose }) => {
-  const [authorNames, setAuthorNames] = useState([""]); // start with one input
+  const [authorNames, setAuthorNames] = useState([""]);
+  // const [authors1, setAuthors] = useState([]);
 
   // Handle input change
   const handleChange = (index, value) => {
@@ -12,6 +14,19 @@ const AddAuthorForm = ({ onClose }) => {
     updatedNames[index] = value;
     setAuthorNames(updatedNames);
   };
+
+  // useEffect(() => {
+  //   const fetchAuthors = async () => {
+  //     try {
+  //       const response = await axios.get("https://localhost:7240/api/Author");
+  //       setAuthors(response.data); // assuming response.data is an array of author objects
+  //     } catch (error) {
+  //       console.error("Failed to fetch authors:", error);
+  //     }
+  //   };
+
+  //   fetchAuthors();
+  // }, []);
 
   // Add more input fields
   const handleAddField = () => {
@@ -24,7 +39,7 @@ const AddAuthorForm = ({ onClose }) => {
     setAuthorNames(updatedNames);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Filter out empty fields
@@ -35,9 +50,24 @@ const AddAuthorForm = ({ onClose }) => {
       return;
     }
 
-    alert(`Authors added:\n${validNames.join(", ")}`);
-    setAuthorNames([""]); // reset form
-    onClose();
+    try {
+      for (const name of validNames) {
+        const response = await axios.post("https://localhost:7240/api/Author", {
+          authorName: name,
+        });
+        console.log(`Author ${name} added:`, response.data);
+      }
+
+      alert(`Authors added: ${validNames.join(", ")}`);
+      setAuthorNames([""]); // Reset form
+      onClose();
+    } catch (error) {
+      console.error(
+        "Error adding authors:",
+        error.response?.data || error.message
+      );
+      alert("There was an error adding authors. Please try again.");
+    }
   };
 
   return (
@@ -129,7 +159,14 @@ const Authors = () => {
             Add Author
           </button>
         </div>
+        {/* {authors.length > 0 && (
+          <GridChip
+            data={authors.map((a) => a.authorName)}
+            onEdit={handleEdit}
+          />
+        )} */}
         <GridChip data={authors} onEdit={handleEdit} />
+        {/* <GridChip data={authors.map((a) => a.authorName)} onEdit={handleEdit} /> */}
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <AddAuthorForm onClose={() => setIsModalOpen(false)} />

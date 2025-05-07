@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bgImage from "../assets/image.png";
+import { useNavigate } from "react-router-dom";
 import TextInput from "../components/TextInput";
 import { MdLockOutline } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,7 +24,7 @@ const LoginPage = () => {
 
     try {
       const response = await fetch(
-        "https://localhost:7240/api/Auth/login",
+        "https://localhost:7240/api/Auth/user/login",
         {
           // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/stafflogin`, {
           method: "POST",
@@ -33,8 +36,9 @@ const LoginPage = () => {
 
       if (response.ok) {
         const result = await response.json();
-        sessionStorage.setItem("booknestUser", "hehe");
+        Cookies.set("booknestToken", result.token, { expires: 7, path: "/" });
         alert("Login successful! 🎉");
+        navigate("/");
       } else {
         const error = await response.json();
         alert(`Login failed: ${error.message}`);
@@ -59,6 +63,7 @@ const LoginPage = () => {
               <TextInput
                 id={"email"}
                 type="email"
+                value={formData.email}
                 placeholder="Enter your Email"
                 onChange={handleChange}
                 icon={<CgProfile />}
@@ -70,6 +75,7 @@ const LoginPage = () => {
                 type="password"
                 placeholder="Enter your username"
                 onChange={handleChange}
+                value={formData.password}
                 icon={<MdLockOutline />}
               />
             </div>

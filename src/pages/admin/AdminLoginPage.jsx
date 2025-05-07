@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import bgImage from "../../assets/adminlogin.jpg";
+import { useNavigate } from "react-router-dom";
 import TextInput from "../../components/TextInput";
 import { MdLockOutline } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
@@ -8,6 +9,7 @@ import { Cookie } from "@mui/icons-material";
 import Cookies from "js-cookie";
 
 const AdminLoginPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -35,11 +37,10 @@ const AdminLoginPage = () => {
       );
 
       const result = await response.json();
-
       if (response.ok) {
-        Cookies.set("BookNest", result.token, {});
+        Cookies.set("BookNest", result.token, { expires: 7, path: "/" });
         alert("Admin Login successful!");
-        window.location.href = "/admin/dashboard";
+        navigate("/admin/dashboard");
       } else {
         alert(`Login failed: ${result.message || "Unknown error"}`);
       }
