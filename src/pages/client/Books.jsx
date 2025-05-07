@@ -10,10 +10,11 @@ const Books = () => {
 	const [loading, setLoading] = useState(true);
 	const [priceRange, setPriceRange] = useState([0, 5000]);
 	const [publications, setPublications] = useState([]);
+	const [badges, setBadges] = useState([]);
 
 	// Pagination States
 	const [currentPage, setCurrentPage] = useState(1);
-	const [itemsPerPage, setItemsPerPage] = useState(2);
+	const [itemsPerPage, setItemsPerPage] = useState(8);
 	const [totalPages, setTotalPages] = useState(1);
 
 	const currentBooks = books;
@@ -26,6 +27,7 @@ const Books = () => {
 	const [selectedGenres, setSelectedGenres] = useState([]);
 	const [selectedAuthors, setSelectedAuthors] = useState([]);
 	const [selectedPublications, setSelectedPublications] = useState([]);
+	const [selectedBadge, setSelectedBadge] = useState(null);
 
 	const [minRating, setMinRating] = useState(null);
 	const [selectedLanguages, setSelectedLanguages] = useState([]);
@@ -57,6 +59,10 @@ const Books = () => {
 			selectedPublications.forEach((pubId) =>
 				params.append("publicationIds", pubId)
 			);
+
+			if (selectedBadge) {
+				params.append("badgeId", selectedBadge);
+			}
 
 			params.append("minPrice", priceRange[0]);
 			params.append("maxPrice", priceRange[1]);
@@ -103,6 +109,7 @@ const Books = () => {
 		selectedAuthors,
 		selectedLanguages,
 		selectedPublications,
+		selectedBadge,
 		priceRange,
 		minRating,
 	]);
@@ -169,6 +176,23 @@ const Books = () => {
 		};
 
 		fetchPublications();
+	}, []);
+
+	useEffect(() => {
+		const fetchBadges = async () => {
+			try {
+				const response = await fetch(
+					"https://localhost:7240/api/Badge"
+				);
+				const data = await response.json();
+				console.log("Badges", data);
+				setBadges(data);
+			} catch (error) {
+				console.error("Failed to load badges", error);
+			}
+		};
+
+		fetchBadges();
 	}, []);
 
 	if (loading) {
@@ -412,70 +436,112 @@ const Books = () => {
 			</div>
 
 			{/* Books Section */}
-			<div className="w-3/4 p-4 flex flex-col">
-				<div className="flex justify-between items-center mb-6">
-					{/* Search Bar */}
-					<div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 w-1/2">
-						<input
-							type="text"
-							placeholder="Search book by title"
-							className="flex-1 outline-none text-sm text-gray-700"
-							value={searchTerm}
-							onChange={(e) => setSearchTerm(e.target.value)}
-						/>
-						<FaSearch
-							className="text-gray-500 hover:cursor-pointer"
-							size={20}
-						/>
+			<div className="w-3/4 p-4 flex flex-col justify-between">
+				<div>
+					<div className="flex justify-between items-center mb-6">
+						{/* Search Bar */}
+						<div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 w-1/2">
+							<input
+								type="text"
+								placeholder="Search book by title"
+								className="flex-1 outline-none text-sm text-gray-700"
+								value={searchTerm}
+								onChange={(e) => setSearchTerm(e.target.value)}
+							/>
+							<FaSearch
+								className="text-gray-500 hover:cursor-pointer"
+								size={20}
+							/>
+						</div>
+
+						{/* Sort By */}
+						<div className="flex items-center">
+							<label
+								htmlFor="sort"
+								className="text-sm font-medium text-gray-700 mr-2"
+							>
+								Sort By:
+							</label>
+							<select
+								id="sort"
+								value={`${sortBy}-${
+									isAscending ? "asc" : "desc"
+								}`}
+								onChange={(e) => {
+									const [field, direction] =
+										e.target.value.split("-");
+									setSortBy(field);
+									setIsAscending(direction === "asc");
+									setCurrentPage(1); // Reset to page 1 when sorting changes
+								}}
+								className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+							>
+								<option value="title-asc">Title: A to Z</option>
+								<option value="title-desc">
+									Title: Z to A
+								</option>
+								<option value="date-desc">Newest First</option>
+								<option value="date-asc">Oldest First</option>
+								<option value="price-asc">
+									Price: Low to High
+								</option>
+								<option value="price-desc">
+									Price: High to Low
+								</option>
+								<option value="popularity-desc">
+									Most Popular
+								</option>
+								<option value="popularity-asc">
+									Least Popular
+								</option>
+							</select>
+						</div>
+					</div>
+					<div className="flex gap-4 mt-4 flex-wrap">
+						{/* All Books Button */}
+						<span
+							onClick={() => setSelectedBadge(null)}
+							className={`px-3 py-1 rounded-full text-sm cursor-pointer transition duration-200 ${
+								selectedBadge === null
+									? "bg-orange-500 text-white font-semibold"
+									: "bg-gray-200 text-gray-700 hover:bg-orange-300"
+							}`}
+						>
+							All Books
+						</span>
+
+						{/* Dynamic Badge Buttons */}
+						{badges.map((badge) => (
+							<span
+								key={badge.badgeId}
+								onClick={() =>
+									setSelectedBadge((prev) =>
+										prev === badge.badgeId
+											? null
+											: badge.badgeId
+									)
+								}
+								className={`px-3 py-1 rounded-full text-sm cursor-pointer transition duration-200 ${
+									selectedBadge === badge.badgeId
+										? "bg-orange-500 text-white font-semibold"
+										: "bg-gray-200 text-gray-700 hover:bg-orange-300"
+								}`}
+							>
+								{badge.badgeName}
+							</span>
+						))}
 					</div>
 
-					{/* Sort By */}
-					<div className="flex items-center">
-						<label
-							htmlFor="sort"
-							className="text-sm font-medium text-gray-700 mr-2"
-						>
-							Sort By:
-						</label>
-						<select
-							id="sort"
-							value={`${sortBy}-${isAscending ? "asc" : "desc"}`}
-							onChange={(e) => {
-								const [field, direction] =
-									e.target.value.split("-");
-								setSortBy(field);
-								setIsAscending(direction === "asc");
-								setCurrentPage(1); // Reset to page 1 when sorting changes
-							}}
-							className="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
-						>
-							<option value="title-asc">Title: A to Z</option>
-							<option value="title-desc">Title: Z to A</option>
-							<option value="date-desc">Newest First</option>
-							<option value="date-asc">Oldest First</option>
-							<option value="price-asc">
-								Price: Low to High
-							</option>
-							<option value="price-desc">
-								Price: High to Low
-							</option>
-							<option value="popularity-desc">
-								Most Popular
-							</option>
-							<option value="popularity-asc">
-								Least Popular
-							</option>
-						</select>
+					<div className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-6">
+						{currentBooks.map((book) => (
+							<>
+								{console.log(book)}
+								<ProductCard key={book["bookId"]} book={book} />
+							</>
+						))}
 					</div>
 				</div>
-				<div className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-6">
-					{currentBooks.map((book) => (
-						<>
-							{console.log(book)}
-							<ProductCard key={book["bookId"]} book={book} />
-						</>
-					))}
-				</div>
+
 				{/* Pagination controls */}
 				<div className="flex justify-center items-center mt-6 gap-2">
 					<button
