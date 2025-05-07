@@ -11,7 +11,7 @@ const AddBookForm = ({ fetchBooks }) => {
     bookPrice: "",
     bookStock: "",
     discountPercent: "",
-    bookFinalPrice: "",
+    bookFinalPrice: 0,
     bookLanguage: "",
     isOnSale: false,
     discountStartDate: "",
@@ -29,16 +29,11 @@ const AddBookForm = ({ fetchBooks }) => {
     { placeholder: "Price", value: "bookPrice", type: "number" },
     { placeholder: "Book Format", value: "bookFormat", type: "number" },
     { placeholder: "Discount Percent", value: "discountPercent" },
-    { placeholder: "Discount Start Date", value: "Discount Start Date" },
-    { placeholder: "Discount End Date", value: "Discount End Date Date" },
+    { placeholder: "Discount Start Date", value: "Discount Start Date", type: "date", label: "Discount Start Date" },
+    { placeholder: "Discount End Date", value: "Discount End Date Date", type: "date", label: "Discount End Date" },
     { placeholder: "Genre ID", value: "Genre Id" },
     { placeholder: "Badge ID", value: "Badge Id" },
     { placeholder: "Author ID", value: "Author Id" },
-    {
-      placeholder: "Book Final Price",
-      value: "bookFinalPrice",
-      readOnly: true,
-    }
   ];
 
   // Handle form changes and compute final price
@@ -50,15 +45,7 @@ const AddBookForm = ({ fetchBooks }) => {
         ...prev,
         [name]: type === "checkbox" ? checked : value,
       };
-
-      if (name === "bookPrice" || name === "discountPercent") {
-        const price = parseFloat(updatedFormData.bookPrice) || 0;
-        const discount = parseFloat(updatedFormData.discountPercent) || 0;
-        updatedFormData.bookFinalPrice = (
-          price -
-          (discount / 100) * price
-        ).toFixed(2);
-      }
+  
       console.log("Updated form data:", updatedFormData);
       return updatedFormData;
     });
@@ -79,9 +66,10 @@ const AddBookForm = ({ fetchBooks }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {textFields.map(({ placeholder, value, readOnly, type }) => (
+    <form onSubmit={handleSubmit} className="overflow-y-auto h-[700px] p-4">
+      {textFields.map(({ placeholder, value, readOnly, type, label }) => (
         <div className="flex flex-col mb-5" key={value}>
+          {label && <label htmlFor={value} className="mb-2 text-xs">{label}</label>}
           <TextInput
             id={value}
             name={value}
@@ -239,7 +227,7 @@ const AdminBooks = () => {
         </div>
         <Table headers={headers} data={books} />
       </div>
-      <OffCanvas show={show} onClose={handleClose} title="Add a book">
+      <OffCanvas show={show} onClose={handleClose} title="Add a book" >
         <AddBookForm fetchBooks={fetchBooks} />
       </OffCanvas>
     </div>
