@@ -9,6 +9,7 @@ const Books = () => {
 	const [books, setBooks] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [priceRange, setPriceRange] = useState([0, 5000]);
+	const [publications, setPublications] = useState([]);
 
 	// Pagination States
 	const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +25,7 @@ const Books = () => {
 
 	const [selectedGenres, setSelectedGenres] = useState([]);
 	const [selectedAuthors, setSelectedAuthors] = useState([]);
+	const [selectedPublications, setSelectedPublications] = useState([]);
 
 	const [minRating, setMinRating] = useState(null);
 	const [selectedLanguages, setSelectedLanguages] = useState([]);
@@ -50,6 +52,10 @@ const Books = () => {
 
 			selectedGenres.forEach((genreId) =>
 				params.append("genreIds", genreId)
+			);
+
+			selectedPublications.forEach((pubId) =>
+				params.append("publicationIds", pubId)
 			);
 
 			params.append("minPrice", priceRange[0]);
@@ -96,6 +102,7 @@ const Books = () => {
 		selectedGenres,
 		selectedAuthors,
 		selectedLanguages,
+		selectedPublications,
 		priceRange,
 		minRating,
 	]);
@@ -145,6 +152,23 @@ const Books = () => {
 		};
 
 		fetchAuthors();
+	}, []);
+
+	useEffect(() => {
+		const fetchPublications = async () => {
+			try {
+				const response = await fetch(
+					"https://localhost:7240/api/Publication"
+				);
+				const data = await response.json();
+				console.log("Publications", data);
+				setPublications(data);
+			} catch (error) {
+				console.error("Failed to load publications", error);
+			}
+		};
+
+		fetchPublications();
 	}, []);
 
 	if (loading) {
@@ -225,6 +249,47 @@ const Books = () => {
 									style={{ width: 18, height: 18 }}
 								/>
 								{author.authorName}
+							</label>
+						))}
+					</div>
+				</div>
+
+				{/* Publication */}
+				<div className="mb-6">
+					<h3 className="text-sm font-medium mb-2 text-gray-700">
+						Publication
+					</h3>
+					<div className="flex flex-col gap-2">
+						{publications.map((publication) => (
+							<label
+								key={publication.publicationId}
+								className="flex items-center text-gray-600 hover:text-[#359BA2] cursor-pointer"
+							>
+								<input
+									type="checkbox"
+									checked={selectedPublications.includes(
+										publication.publicationId
+									)}
+									onChange={() =>
+										setSelectedPublications((prev) =>
+											prev.includes(
+												publication.publicationId
+											)
+												? prev.filter(
+														(id) =>
+															id !==
+															publication.publicationId
+												  )
+												: [
+														...prev,
+														publication.publicationId,
+												  ]
+										)
+									}
+									className="mr-2 accent-orange-400"
+									style={{ width: 18, height: 18 }}
+								/>
+								{publication.publicationName}
 							</label>
 						))}
 					</div>
