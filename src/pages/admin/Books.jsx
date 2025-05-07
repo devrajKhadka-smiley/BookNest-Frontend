@@ -38,7 +38,7 @@ const AddBookForm = ({ fetchBooks }) => {
       placeholder: "Book Final Price",
       value: "bookFinalPrice",
       readOnly: true,
-    },
+    }
   ];
 
   // Handle form changes and compute final price
