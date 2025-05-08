@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CartItem = ({
   imageUrl,
@@ -10,56 +12,62 @@ const CartItem = ({
   onQuantityChange,
 }) => {
   return (
-    <div className="flex items-center py-6 border-b border-gray-300 w-full space-x-4">
-      {/* Image Section */}
-      <div className="w-28 h-28 rounded-lg overflow-hidden shadow-lg">
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-full h-full object-cover"
-        />
-      </div>
+    <tbody>
+      <tr className="h-auto">
+        {/* Image Section */}
+        <td className="w-30 h-auto p-4">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-4/5 h-4/5 object-cover rounded-lg shadow-lg"
+          />
+        </td>
 
-      {/* Item Details (Title, Cover Type, Author) */}
-      <div className="flex-grow space-y-1">
-        <h3 className="text-xl font-semibold text-gray-800 truncate">{title}</h3>
-        <p className="text-sm text-gray-500 truncate">{coverType}</p>
-        <p className="text-sm text-gray-500 truncate">{author}</p>
-      </div>
+        {/* Item Details (Title, Cover Type, Author) */}
+        <td className="px-4 py-2 w-64 text-left">
+          <h3 className="text-xl font-semibold text-gray-800 truncate">
+            {title}
+          </h3>
+          <p className="text-sm text-gray-500 truncate">{coverType}</p>
+          <p className="text-sm text-gray-500 truncate">{author}</p>
+        </td>
 
-      {/* Quantity Selector */}
-      <div className="w-16">
-        <select
-          value={quantity} // Ensure this is controlled by the parent state
-          onChange={(e) => onQuantityChange(Number(e.target.value))} // Update the quantity in the parent state
-          className="w-full border border-gray-300 rounded-md py-2 px-3 text-center text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 ease-in-out"
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-      </div>
+        {/* Quantity Selector */}
+        <td className="px-4 py-2 w-24 text-left">
+          <select
+            value={quantity}
+            onChange={(e) => onQuantityChange(Number(e.target.value))}
+            className="w-full border border-gray-300 rounded-md py-2 px-3 text-center text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200 ease-in-out"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </td>
 
-      {/* Price Section */}
-      <div className="w-32 text-right space-y-1">
-        <p className="text-xl font-semibold text-gray-900">${(price * quantity).toFixed(2)}</p>
-        <p className="text-sm text-gray-500">${price} each</p>
-      </div>
+        {/* Price Section */}
+        <td className="px-4 py-2 w-32 text-center">
+          <p className="text-xl font-semibold text-gray-900">
+            ${(price * quantity).toFixed(2)}
+          </p>
+          <p className="text-sm text-gray-500">${price} each</p>
+        </td>
 
-      {/* Remove Button */}
-      <div className="w-24 text-right">
-        <button className="text-sm text-red-500 hover:text-red-700 focus:outline-none transition duration-200 ease-in-out">
-          Remove
-        </button>
-      </div>
-    </div>
+        {/* Remove Button */}
+        <td className="px-4 py-2 w-28 text-center">
+          <button className="flex items-center justify-center space-x-2 text-sm hover:cursor-pointer text-red-500 hover:text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 px-4 py-2 rounded-lg transition duration-200 ease-in-out">
+            <FaTrashAlt className="w-5 h-5" /> {/* Trash icon */}
+            <span>Remove</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   );
 };
 
-
 const OrderForm = () => {
   return (
-    <div className="bg-white p-6 border border-black w-full max-w-xs rounded-md">
+    <div className="bg-white p-6 border border-black w-full max-w-xs rounded-md max-h-[500px] overflow-y-auto">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">
         Order Summary
       </h2>
@@ -98,9 +106,12 @@ const OrderForm = () => {
       </div>
 
       <div className="mt-4 text-center text-sm text-gray-500">
-        <button className="text-indigo-500 hover:text-indigo-700 focus:outline-none">
+        <Link
+          to="/books"
+          className="text-indigo-500 hover:text-indigo-700 focus:outline-none cursor-pointer"
+        >
           &larr; Continue shopping
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -179,27 +190,46 @@ const Cart = () => {
 
   return (
     <div className="w-4/5 mx-auto my-10">
-      <h1 className="text-2xl font-bold text-center">Your Cart</h1>
+      <h1 className="text-2xl font-bold text-center mb-10">Your Cart</h1>
       <div className="mx-auto flex justify-between gap-8">
         <div className="bg-gray-100 p-6 rounded-md shadow-md w-full">
-          {books.map((book) => (
-            <CartItem
-              key={book.id}
-              imageUrl={book.imageurls}
-              title={book.title}
-              coverType={book.coverType}
-              author={book.autor}
-              quantity={book.quantity}
-              price={book.price}
-              onQuantityChange={(newQuantity) =>
-                handleQuantityChange(book.id, newQuantity)
-              }
-            />
-          ))}
+          <table className="w-full py-6 border-b border-gray-300 table-auto">
+            <thead>
+              <tr>
+                {/* Merged Book header for Image and Book details */}
+                <th className="px-4 py-2 text-center" colSpan="2">
+                  <span className="font-semibold text-gray-700">Book</span>
+                </th>
+
+                {/* Other headers */}
+                <th className="text-center">Quantity</th>
+                <th className="text-center">Price</th>
+                <th className="text-center">Action</th>
+              </tr>
+            </thead>
+            {books.map((book) => (
+              <CartItem
+                key={book.id}
+                imageUrl={book.imageurls}
+                title={book.title}
+                coverType={book.coverType}
+                author={book.autor}
+                quantity={book.quantity}
+                price={book.price}
+                onQuantityChange={(newQuantity) =>
+                  handleQuantityChange(book.id, newQuantity)
+                }
+              />
+            ))}
+          </table>
+
           <div className="mt-6 flex justify-between items-center">
-            <button className="text-indigo-500 hover:text-indigo-700 focus:outline-none">
+            <Link
+              to="/books"
+              className="text-indigo-500 hover:text-indigo-700 focus:outline-none cursor-pointer"
+            >
               &larr; Continue shopping
-            </button>
+            </Link>
           </div>
         </div>
         <OrderForm />
