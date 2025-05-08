@@ -10,6 +10,7 @@ import {
   FaPenNib,
   FaTags,
   FaBuilding,
+  FaCheck,
 } from "react-icons/fa";
 
 const StaffNavbar = () => {
@@ -17,8 +18,17 @@ const StaffNavbar = () => {
 
   // Define navigation items in an array
   const navItems = [
-    { name: "Dashboard", path: "/staff/staff-dashboard", icon: <FaTachometerAlt /> },
-    { name: "Orders", path: "/staff/staff-orders", icon: <FaShoppingCart /> }
+    {
+      name: "Dashboard",
+      path: "/staff/staff-dashboard",
+      icon: <FaTachometerAlt />,
+    },
+    { name: "Orders", path: "/staff/staff-orders", icon: <FaShoppingCart /> },
+    {
+      name: "Verification Pannel",
+      path: "/staff/staff-verification-pannel",
+      icon: <FaCheck />,
+    },
   ];
 
   return (

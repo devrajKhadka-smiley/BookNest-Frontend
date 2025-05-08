@@ -25,6 +25,7 @@ import StaffLoginPage from "./pages/staff/StaffLoginPage";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import StaffDashboard from "./pages/staff/StaffDashboard";
 import StaffOrders from "./pages/staff/StaffOrders";
+import StaffOrderVerification from "./pages/staff/StaffOrderVerification";
 import Cart from "./pages/client/Cart";
 function App() {
   return (
@@ -62,6 +63,10 @@ function App() {
         <Route path="/staff" element={<StaffLayout />}>
           <Route path="/staff/staff-dashboard" element={<StaffDashboard />} />
           <Route path="/staff/staff-orders" element={<StaffOrders />} />
+          <Route
+            path="/staff/staff-verification-pannel"
+            element={<StaffOrderVerification />}
+          />
         </Route>
       </Routes>
     </Router>
