@@ -51,7 +51,7 @@ const NavigationBar = () => {
 
       {/* Middle Section: Navigation Links */}
       <div className="hidden md:flex">
-        <ul className="flex gap-6">
+        <ul className="flex gap-14">
           {navItems.map(({ path, label, icon }) => (
             <li key={path}>
               <Link
