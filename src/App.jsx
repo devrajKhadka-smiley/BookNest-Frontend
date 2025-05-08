@@ -25,6 +25,7 @@ import StaffLoginPage from "./pages/staff/StaffLoginPage";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import StaffDashboard from "./pages/staff/StaffDashboard";
 import StaffOrders from "./pages/staff/StaffOrders";
+import Cart from "./pages/client/Cart";
 function App() {
   return (
     <Router>
@@ -35,9 +36,10 @@ function App() {
           <Route path="books" element={<Books />} />
           <Route path="book/:id" element={<BookDetail />} />
           <Route path="about" element={<About />} />
-          <Route path="WhitelistPage" element={<Whitelist />} />
+          <Route path="whitelists" element={<Whitelist />} />
           <Route path="services" element={<Services />} /> {/* New Route */}
           <Route path="contact" element={<Contact />} /> {/* New Route */}
+          <Route path="cart" element={<Cart />} /> {/* New Route */}
           <Route path="signup" element={<SignUpPage />} />
           <Route path="login" element={<LoginPage />} />
         </Route>

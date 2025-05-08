@@ -8,3 +8,13 @@ body {
   height: 100%;
   width: 100%;
 }
+.active-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;  /* Adjust this value for your desired distance */
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #f97316;
+  transition: opacity 0.3s ease;
+}
