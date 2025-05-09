@@ -11,6 +11,8 @@ const Books = () => {
 	const [priceRange, setPriceRange] = useState([0, 5000]);
 	const [publications, setPublications] = useState([]);
 	const [badges, setBadges] = useState([]);
+	const [formats, setFormats] = useState([]);
+	const [languages, setLanguages] = useState([]);
 
 	// Pagination States
 	const [currentPage, setCurrentPage] = useState(1);
@@ -31,6 +33,7 @@ const Books = () => {
 
 	const [minRating, setMinRating] = useState(null);
 	const [selectedLanguages, setSelectedLanguages] = useState([]);
+	const [selectedFormats, setSelectedFormats] = useState([]);
 
 	// Change Page
 	const changePage = (pageNumber) => {
@@ -69,6 +72,10 @@ const Books = () => {
 
 			selectedLanguages.forEach((lang) =>
 				params.append("languages", lang.toLowerCase())
+			);
+
+			selectedFormats.forEach((format) =>
+				params.append("formats", format.toLowerCase())
 			);
 
 			if (minRating !== null) {
@@ -110,6 +117,7 @@ const Books = () => {
 		selectedLanguages,
 		selectedPublications,
 		selectedBadge,
+		selectedFormats,
 		priceRange,
 		minRating,
 	]);
@@ -123,6 +131,7 @@ const Books = () => {
 		selectedGenres,
 		selectedAuthors,
 		selectedLanguages,
+		selectedFormats,
 		priceRange,
 		minRating,
 	]);
@@ -193,6 +202,38 @@ const Books = () => {
 		};
 
 		fetchBadges();
+	}, []);
+
+	useEffect(() => {
+		const fetchFormats = async () => {
+			try {
+				const response = await fetch(
+					"https://localhost:7240/api/Book/available-formats"
+				);
+				const data = await response.json();
+				setFormats(data);
+			} catch (error) {
+				console.error("Failed to load formats", error);
+			}
+		};
+
+		fetchFormats();
+	}, []);
+
+	useEffect(() => {
+		const fetchLanguages = async () => {
+			try {
+				const response = await fetch(
+					"https://localhost:7240/api/Book/available-languages"
+				);
+				const data = await response.json();
+				setLanguages(data);
+			} catch (error) {
+				console.error("Failed to load languages", error);
+			}
+		};
+
+		fetchLanguages();
 	}, []);
 
 	if (loading) {
@@ -406,7 +447,7 @@ const Books = () => {
 						Language
 					</h3>
 					<div className="flex flex-col gap-2">
-						{["English", "Nepali"].map((language) => (
+						{languages.map((language) => (
 							<label
 								key={language}
 								className="flex items-center text-gray-600 hover:text-[#359BA2] cursor-pointer"
@@ -429,6 +470,37 @@ const Books = () => {
 									style={{ width: 18, height: 18 }}
 								/>
 								{language}
+							</label>
+						))}
+					</div>
+				</div>
+
+				<div className="mt-6">
+					<h3 className="text-sm font-medium mb-2 text-gray-700">
+						Format
+					</h3>
+					<div className="flex flex-col gap-2">
+						{formats.map((format) => (
+							<label
+								key={format}
+								className="flex items-center text-gray-600 hover:text-[#359BA2] cursor-pointer"
+							>
+								<input
+									type="checkbox"
+									checked={selectedFormats.includes(format)}
+									onChange={() =>
+										setSelectedFormats((prev) =>
+											prev.includes(format)
+												? prev.filter(
+														(f) => f !== format
+												  )
+												: [...prev, format]
+										)
+									}
+									className="mr-2 accent-orange-400"
+									style={{ width: 18, height: 18 }}
+								/>
+								{format}
 							</label>
 						))}
 					</div>
