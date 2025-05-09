@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import GridChip from "../../components/GridChip";
 import Modal from "../../components/modal";
 
@@ -16,76 +16,39 @@ const Genres = () => {
     alert(`Edit clicked for ${genre}`);
   };
   const AddGenreForm = ({ onClose }) => {
-    const [genreNames, setGenreNames] = useState([""]); // start with one input
+    const [genreName, setGenreName] = useState("");
 
-    // Handle input change
-    const handleChange = (index, value) => {
-      const updatedNames = [...genreNames];
-      updatedNames[index] = value;
-      setGenreNames(updatedNames);
-    };
-
-    // Add more input fields
-    const handleAddField = () => {
-      setGenreNames([...genreNames, ""]);
-    };
-
-    // Remove an input field (optional but clean)
-    const handleRemoveField = (index) => {
-      const updatedNames = genreNames.filter((_, i) => i !== index);
-      setGenreNames(updatedNames);
+    const handleInputChange = (value) => {
+      setGenreName(value);
     };
 
     const handleSubmit = (e) => {
       e.preventDefault();
 
-      // Filter out empty fields
-      const validNames = genreNames.filter((name) => name.trim() !== "");
-
-      if (validNames.length === 0) {
-        alert("Please enter at least one genre.");
+      if (genreName.trim() === "") {
+        alert("Please enter a genre name.");
         return;
       }
 
-      alert(`Genres added:\n${validNames.join(", ")}`);
-      setGenreNames([""]); // reset form
+      alert(`Genre added: ${genreName}`);
+      setGenreName(""); // Reset form
       onClose();
     };
 
     return (
       <form onSubmit={handleSubmit}>
-        <h3 className="text-lg font-semibold mb-2">Add New Genre(s)</h3>
+        <h3 className="text-lg font-semibold mb-2">Add New Genre</h3>
 
-        {genreNames.map((name, index) => (
-          <div key={index} className="flex items-center mb-2">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => handleChange(index, e.target.value)}
-              placeholder={`Genre Name ${index + 1}`}
-              className="border border-gray-300 rounded px-3 py-2 w-full"
-              required
-            />
-            {genreNames.length > 1 && (
-              <button
-                type="button"
-                onClick={() => handleRemoveField(index)}
-                className="ml-2 text-red-600 hover:text-red-800"
-                title="Remove"
-              >
-                ✖
-              </button>
-            )}
-          </div>
-        ))}
-
-        <button
-          type="button"
-          onClick={handleAddField}
-          className="bg-gray-200 text-black px-3 py-1 rounded-lg hover:bg-gray-300 transition mb-3"
-        >
-          + Add More
-        </button>
+        <div className="flex items-center mb-2">
+          <input
+            type="text"
+            value={genreName}
+            onChange={(e) => handleInputChange(e.target.value)}
+            placeholder="Enter the genre name"
+            className="border border-gray-300 rounded px-3 py-2 w-full"
+            required
+          />
+        </div>
 
         <div>
           <button

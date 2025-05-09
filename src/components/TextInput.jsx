@@ -28,7 +28,7 @@ const TextInput = ({
         name={name}
         required={required}
         type={type === "password" && showPassword ? "text" : type}
-        className="flex flex-1 p-2 border-[none] h-10 pr-[30px] outline-none text-xs"
+        className="p-2 border-[none] h-10 outline-none text-xs w-full"
         placeholder={placeholder}
         onChange={onChange}
         readOnly={readOnly}

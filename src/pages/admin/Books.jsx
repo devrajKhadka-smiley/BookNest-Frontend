@@ -29,8 +29,6 @@ const AddBookForm = ({ fetchBooks }) => {
     { placeholder: "Price", value: "bookPrice", type: "number" },
     { placeholder: "Book Format", value: "bookFormat", type: "number" },
     { placeholder: "Discount Percent", value: "discountPercent" },
-    { placeholder: "Discount Start Date", value: "Discount Start Date" },
-    { placeholder: "Discount End Date", value: "Discount End Date Date" },
     { placeholder: "Genre ID", value: "Genre Id" },
     { placeholder: "Badge ID", value: "Badge Id" },
     { placeholder: "Author ID", value: "Author Id" },
@@ -79,13 +77,13 @@ const AddBookForm = ({ fetchBooks }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="overflow-y-auto h-[400px] py-4">
       {textFields.map(({ placeholder, value, readOnly, type }) => (
         <div className="flex flex-col mb-5" key={value}>
           <TextInput
             id={value}
             name={value}
-            type={type || "text"}
+            type={type}
             placeholder={placeholder}
             value={formData[value]}
             onChange={handleChange}
