@@ -16,27 +16,27 @@ const NavigationBar = () => {
     {
       path: "/",
       label: "Home",
-      icon: <FaHome className="w-5 h-5 mr-2" />,
+      icon: <FaHome className="w-4 h-4 mr-2" />,
     },
     {
       path: "/books",
       label: "Books",
-      icon: <FaBook className="w-5 h-5 mr-2" />,
+      icon: <FaBook className="w-4 h-4 mr-2" />,
     },
     {
       path: "/about",
       label: "About",
-      icon: <FaInfoCircle className="w-5 h-5 mr-2" />,
+      icon: <FaInfoCircle className="w-4 h-4 mr-2" />,
     },
     {
       path: "/services",
       label: "Services",
-      icon: <FaServicestack className="w-5 h-5 mr-2" />,
+      icon: <FaServicestack className="w-4 h-4 mr-2" />,
     },
     {
       path: "/contact",
       label: "Contact",
-      icon: <FaPhoneAlt className="w-5 h-5 mr-2" />,
+      icon: <FaPhoneAlt className="w-4 h-4 mr-2" />,
     },
   ];
 
@@ -51,12 +51,12 @@ const NavigationBar = () => {
 
       {/* Middle Section: Navigation Links */}
       <div className="hidden md:flex">
-        <ul className="flex gap-14">
+        <ul className="flex gap-10">
           {navItems.map(({ path, label, icon }) => (
             <li key={path}>
               <Link
                 to={path}
-                className={`font-medium flex ${
+                className={`text-sm flex ${
                   location.pathname === path
                     ? "text-orange-500"
                     : "text-gray-700 hover:text-orange-500"
@@ -70,38 +70,43 @@ const NavigationBar = () => {
         </ul>
       </div>
       {/* Right Section: Buttons */}
-      <div className="flex gap-2">
-        {/* Whitelist Icon */}
-        <Link
-          to="/whitelists"
-          className={`text-gray-700 hover:text-orange-500 relative transition-colors duration-300 ${
-            location.pathname === "/whitelists"
-              ? "text-orange-500 active-link"
-              : ""
-          }`}
-        >
-          <FaHeart size={20} />
-        </Link>
+      <div className="flex gap-10">
+        <div className="flex gap-4">
+          {/* Whitelist Icon */}
+          <Link
+            to="/whitelists"
+            className={`text-gray-700 hover:text-orange-500 relative transition-colors duration-300 ${
+              location.pathname === "/whitelists"
+                ? "text-orange-500 active-link"
+                : ""
+            }`}
+          >
+            <FaHeart size={20} />
+          </Link>
 
-        {/* Cart Icon */}
-        <Link
-          to="/cart"
-          className={`text-gray-700 hover:text-orange-500 relative transition-colors duration-300 ${
-            location.pathname === "/cart" ? "text-orange-500 active-link" : ""
-          }`}
-        >
-          <FaCartPlus size={20} />
-        </Link>
-        <Link to="/login">
-          <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 cursor-pointer">
-            Login
-          </button>
-        </Link>
-        <Link to="/signup">
-          <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 cursor-pointer">
-            Sign Up
-          </button>
-        </Link>
+          {/* Cart Icon */}
+          <Link
+            to="/cart"
+            className={`text-gray-700 hover:text-orange-500 relative transition-colors duration-300 ${
+              location.pathname === "/cart" ? "text-orange-500 active-link" : ""
+            }`}
+          >
+            <FaCartPlus size={20} />
+          </Link>
+        </div>
+
+        <div className="hidden md:flex items-center gap-4">
+          <Link to="/login">
+            <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 cursor-pointer">
+              Login
+            </button>
+          </Link>
+          <Link to="/signup">
+            <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 cursor-pointer">
+              Sign Up
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

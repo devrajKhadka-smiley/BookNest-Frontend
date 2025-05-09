@@ -3,9 +3,9 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: Poppins, sans-serif;
-  min-width: 1440px;
+  /* min-width: 1440px; */
   /* background-color: purple; */
   margin-left: 40px;
   margin-right: 40px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
