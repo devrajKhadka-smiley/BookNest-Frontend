@@ -162,6 +162,7 @@ const StaffOrderVerification = () => {
             </div>
 
             {/* Buttons */}
+           {/* Buttons */}
             <div className="flex justify-between items-center">
               <button
                 className="px-6 py-3 border border-black rounded-md text-base font-medium hover:bg-gray-100"
@@ -169,10 +170,17 @@ const StaffOrderVerification = () => {
               >
                 Back
               </button>
-              <button className="px-8 py-3 bg-gray-500 text-white rounded-md text-base font-medium hover:bg-gray-600">
-                Checkout Order
-              </button>
+
+              <div className="flex space-x-4">
+                <button className="px-8 py-3 bg-green-600 text-white rounded-md text-base font-medium hover:bg-green-700">
+                  Confirm
+                </button>
+                <button className="px-8 py-3 bg-red-600 text-white rounded-md text-base font-medium hover:bg-red-700">
+                  Cancel
+                </button>
+              </div>
             </div>
+
           </div>
         )}
       </div>
