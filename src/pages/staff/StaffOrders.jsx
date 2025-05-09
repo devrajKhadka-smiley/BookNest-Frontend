@@ -10,6 +10,7 @@ const StaffOrders = () => {
     "Order Date",
     "No. of books",
     "Pickup Date",
+    "Status", // New column header
   ];
 
   const orders = [
@@ -21,6 +22,7 @@ const StaffOrders = () => {
       orderDate: "2074-05-15",
       books: 3,
       pickupDate: "2074-05-20",
+      status: "Pending", // New field
     },
     {
       name: "User2",
@@ -30,6 +32,7 @@ const StaffOrders = () => {
       orderDate: "2074-05-16",
       books: 2,
       pickupDate: "2074-05-21",
+      status: "Confirmed",
     },
     {
       name: "User3",
@@ -39,6 +42,7 @@ const StaffOrders = () => {
       orderDate: "2074-05-17",
       books: 1,
       pickupDate: "2074-05-22",
+      status: "Cancelled",
     },
     {
       name: "User4",
@@ -48,6 +52,7 @@ const StaffOrders = () => {
       orderDate: "2074-05-18",
       books: 4,
       pickupDate: "2074-05-23",
+      status: "Pending",
     },
     {
       name: "User5",
@@ -57,6 +62,7 @@ const StaffOrders = () => {
       orderDate: "2074-05-19",
       books: 5,
       pickupDate: "2074-05-24",
+      status: "Confirmed",
     },
     {
       name: "User6",
@@ -66,6 +72,7 @@ const StaffOrders = () => {
       orderDate: "2074-05-20",
       books: 6,
       pickupDate: "2074-05-25",
+      status: "Pending",
     },
   ];
 
@@ -134,8 +141,7 @@ const StaffOrders = () => {
               "Order Date": order.orderDate,
               "No. of books": order.books,
               "Pickup Date": order.pickupDate,
-
-              
+              Status: order.status, // Include status
             }))}
             className="w-full"
           />
