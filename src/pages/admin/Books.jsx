@@ -227,7 +227,7 @@ const AdminBooks = () => {
       {/* Display fetched books */}
       <div className="w-full max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Genres List</h2>
+          <h2 className="text-xl font-semibold">Books List</h2>
           <button
             onClick={handleShow}
             className="border-2 border-black bg-white text-black px-6 py-2 rounded-xl hover:bg-gray-100 transition"
