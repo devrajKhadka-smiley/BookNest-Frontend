@@ -34,7 +34,7 @@ function App() {
         <Route path="/" element={<ClientLayout />}>
           <Route index element={<Home />} />
           <Route path="books" element={<Books />} />
-          <Route path="book/:id" element={<BookDetail />} />
+          <Route path="bookDetail" element={<BookDetail />} />
           <Route path="about" element={<About />} />
           <Route path="whitelists" element={<Whitelist />} />
           <Route path="services" element={<Services />} /> {/* New Route */}

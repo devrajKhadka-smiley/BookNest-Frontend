@@ -8,71 +8,145 @@ import {
   FaServicestack,
   FaPhoneAlt,
 } from "react-icons/fa";
+import home from "../assets/home.json";
+import book from "../assets/book.json";
+import info from "../assets/info.json";
+import phone from "../assets/phone.json";
+import service from "../assets/service.json";
+import Lottie from "lottie-react";
+const HomeIcon = () => (
+  <div className="w-5 h-5 mr-2 flex">
+    <Lottie animationData={home} loop={true} />
+  </div>
+);
+
+const BookIcon = () => (
+  <div className="w-5 h-5 mr-2">
+    <Lottie animationData={book} loop={true} />
+  </div>
+);
+
+const InfoIcon = () => (
+  <div className="w-5 h-5 mr-2">
+    <Lottie animationData={info} loop={true} />
+  </div>
+);
+
+const ServiceIcon = () => (
+  <div className="w-7 h-7 mr-2">
+    <Lottie animationData={service} loop={true} />
+  </div>
+);
+
+const PhoneIcon = () => (
+  <div className="w-8 h-8 mr-2">
+    <Lottie animationData={phone} loop={true} />
+  </div>
+);
 
 const NavigationBar = () => {
-  const location = useLocation(); // Get the current path
+  const location = useLocation();
 
-  const navItems = [
-    {
-      path: "/",
-      label: "Home",
-      icon: <FaHome className="w-4 h-4 mr-2" />,
-    },
-    {
-      path: "/books",
-      label: "Books",
-      icon: <FaBook className="w-4 h-4 mr-2" />,
-    },
-    {
-      path: "/about",
-      label: "About",
-      icon: <FaInfoCircle className="w-4 h-4 mr-2" />,
-    },
-    {
-      path: "/services",
-      label: "Services",
-      icon: <FaServicestack className="w-4 h-4 mr-2" />,
-    },
-    {
-      path: "/contact",
-      label: "Contact",
-      icon: <FaPhoneAlt className="w-4 h-4 mr-2" />,
-    },
-  ];
+const navItems = [
+  {
+    path: "/",
+    content: (
+      <div className="flex items-center">
+        {location.pathname === "/" ? (
+          <FaHome className="w-4 h-4 mr-2" />
+        ) : (
+          <HomeIcon />
+        )}
+        Home
+      </div>
+    ),
+  },
+  {
+    path: "/books",
+    content: (
+      <div className="flex items-center">
+        {location.pathname === "/books" ? (
+          <FaBook className="w-4 h-4 mr-2" />
+        ) : (
+          <BookIcon />
+        )}
+        Books
+      </div>
+    ),
+  },
+  {
+    path: "/about",
+    content: (
+      <div className="flex items-center">
+        {location.pathname === "/about" ? (
+        <FaInfoCircle className="w-4 h-4 mr-2" />
+        ) : (
+          <InfoIcon />
+        )}
+        About
+      </div>
+    ),
+  },
+  {
+    path: "/services",
+    content: (
+      <div className="flex items-center">
+        {location.pathname === "/services" ? (
+        <FaServicestack className="w-4 h-4 mr-2" />
+        ):(
+          <ServiceIcon/>
+        )}
+        Service
+      </div>
+    ),
+  },
+  {
+    path: "/contact",
+    content: (
+      <div className="flex items-center">
+        {location.pathname === "/contact" ? (
+        <FaPhoneAlt className="w-4 h-4 mr-2" />
+        ) : (
+          <PhoneIcon />
+        )}
+        Contact
+      </div>
+    ),
+  },
+];
+
+
 
   return (
-    // <div className="sticky top-0 z-50 flex justify-between items-center bg-white border-b border-gray-200 px-4 py-2">
-
     <div className="sticky top-0 z-50 flex justify-between items-center bg-white border-b border-gray-200 px-4 py-2">
-      {/* Left Section: Logo */}
+      {/* Logo */}
       <div className="flex items-center">
         <img src="/src/assets/logo.png" alt="logo" className="w-32 h-auto" />
       </div>
 
-      {/* Middle Section: Navigation Links */}
+      {/* Nav Links */}
       <div className="hidden md:flex">
         <ul className="flex gap-10">
-          {navItems.map(({ path, label, icon }) => (
-            <li key={path}>
+          {navItems.map(({ path, content }) => (
+            <li key={path} className="flex items-center justify-center">
               <Link
                 to={path}
-                className={`text-sm flex ${
+                className={`text-sm flex items-center ${
                   location.pathname === path
                     ? "text-orange-500"
                     : "text-gray-700 hover:text-orange-500"
                 }`}
               >
-                {icon}
-                {label}
+                {content}
               </Link>
             </li>
           ))}
         </ul>
       </div>
-      {/* Right Section: Buttons */}
+
+      {/* Right Side Icons and Buttons */}
       <div className="flex gap-10">
         <div className="flex gap-4">
-          {/* Whitelist Icon */}
           <Link
             to="/whitelists"
             className={`text-gray-700 hover:text-orange-500 relative transition-colors duration-300 ${
@@ -83,8 +157,6 @@ const NavigationBar = () => {
           >
             <FaHeart size={20} />
           </Link>
-
-          {/* Cart Icon */}
           <Link
             to="/cart"
             className={`text-gray-700 hover:text-orange-500 relative transition-colors duration-300 ${
@@ -94,7 +166,6 @@ const NavigationBar = () => {
             <FaCartPlus size={20} />
           </Link>
         </div>
-
         <div className="hidden md:flex items-center gap-4">
           <Link to="/login">
             <button className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded hover:bg-orange-600 cursor-pointer">
