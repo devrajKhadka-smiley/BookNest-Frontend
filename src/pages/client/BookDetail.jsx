@@ -34,60 +34,59 @@ const BookDetail = () => {
           />
         </div>
         {/* Right: Book Info */}
-          <div className="md:w-1/2 md:pl-8 flex flex-col gap-8 justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">
-                {book.title}
-              </h1>
+        <div className="md:w-1/2 md:pl-8 flex flex-col gap-8 justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">
+              {book.title}
+            </h1>
 
-              <div className="flex items-center mb-2">
-            {[...Array(5)].map((_, index) => {
-              const fullStar = index < Math.floor(book.rating);
-              const halfStar =
-                index === Math.floor(book.rating) &&
-                book.rating % 1 !== 0;
-              return (
-                <span key={index} className="text-2xl text-yellow-500">
-                  {fullStar ? <Star/> : halfStar ? <StarHalf/> : "☆"}
-                </span>
-              );
-            })}
-            
-                <span className="text-xl font-semibold ml-2">{book.rating}</span>
-              </div>
+            <div className="flex items-center mb-2">
+              {[...Array(5)].map((_, index) => {
+                const fullStar = index < Math.floor(book.rating);
+                const halfStar =
+                  index === Math.floor(book.rating) && book.rating % 1 !== 0;
+                return (
+                  <span key={index} className="text-2xl text-yellow-500">
+                    {fullStar ? <Star /> : halfStar ? <StarHalf /> : "☆"}
+                  </span>
+                );
+              })}
 
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl text-green-600 font-semibold">
-            ₹{book.discountedPrice}
-                </span>
-                <span className="text-lg text-gray-400 line-through">
-            ₹{book.price}
-                </span>
-              </div>
-              <p className="mb-1 text-gray-700">
-                <strong>Stock:</strong>{" "}
-                <span
-            className={book.stock > 0 ? "text-green-600" : "text-red-600"}
-                >
-            {book.stock > 0 ? `${book.stock} available` : "Out of stock"}
-                </span>
-              </p>
-              <p className="mb-3 text-gray-700">
-                <strong>Cover Type:</strong>
-                <select
-            className="border rounded px-2 py-1 ml-2"
-            value={selectedCover}
-            onChange={(e) => setSelectedCover(e.target.value)}
-                >
-            {coverTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-                </select>
-              </p>
-              {/* Quantity Selector */}
-            <div className="flex items-center gap-4 mb-4">
+              <span className="text-xl font-semibold ml-2">{book.rating}</span>
+            </div>
+
+            <div className="flex items-center gap-3 my-8">
+              <span className="text-2xl text-green-600 font-semibold">
+                ₹{book.discountedPrice}
+              </span>
+              <span className="text-lg text-gray-400 line-through">
+                ₹{book.price}
+              </span>
+            </div>
+            <p className="my-8 text-gray-700">
+              <strong>Available stock:</strong>{" "}
+              <span
+                className={book.stock > 0 ? "text-green-600" : "text-red-600"}
+              >
+                {book.stock > 0 ? `${book.stock}` : "Out of stock"}
+              </span>
+            </p>
+            <p className="mb-3 text-gray-700">
+              <strong>Cover Type:</strong>
+              <select
+                className="border rounded px-2 py-1 ml-2"
+                value={selectedCover}
+                onChange={(e) => setSelectedCover(e.target.value)}
+              >
+                {coverTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </p>
+            {/* Quantity Selector */}
+            <div className="flex items-center gap-4 my-8">
               <span className="mr-2 font-semibold">Quantity:</span>
               <button
                 className="hover: cursor-pointer select-none"
@@ -107,20 +106,20 @@ const BookDetail = () => {
                     1,
                     Math.min(book.stock, Number(e.target.value))
                   );
-                    setQuantity(val);
-                  }}
-                  readOnly
-                  />
-                  <button
-                  className="hover: cursor-pointer select-none"
-                  onClick={() => setQuantity((q) => Math.min(book.stock, q + 1))}
-                  disabled={quantity >= book.stock}
-                  >
-                  +
-                  </button>
-                </div>
-                </div>
-                {/* Action Buttons */}
+                  setQuantity(val);
+                }}
+                readOnly
+              />
+              <button
+                className="hover: cursor-pointer select-none"
+                onClick={() => setQuantity((q) => Math.min(book.stock, q + 1))}
+                disabled={quantity >= book.stock}
+              >
+                +
+              </button>
+            </div>
+          </div>
+          {/* Action Buttons */}
           <div className="flex gap-4 mt-4">
             <button
               className="px-5 py-2 bg-[#359BA2] text-white rounded hover:bg-[#2c8a90] font-semibold"

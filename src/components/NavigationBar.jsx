@@ -6,6 +6,7 @@ import {
   FaBook,
   FaInfoCircle,
   FaServicestack,
+  FaHeadset,
   FaPhoneAlt,
 } from "react-icons/fa";
 import home from "../assets/home.json";
@@ -92,7 +93,7 @@ const navItems = [
     content: (
       <div className="flex items-center">
         {location.pathname === "/services" ? (
-        <FaServicestack className="w-4 h-4 mr-2" />
+        <FaHeadset className="w-4 h-4 mr-2" />
         ):(
           <ServiceIcon/>
         )}
