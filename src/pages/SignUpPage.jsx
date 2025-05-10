@@ -8,15 +8,13 @@ import { MdLockOutline, MdOutlineEmail } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
 import { RiLockStarLine } from "react-icons/ri";
 import { BiUser } from "react-icons/bi";
-const SignUpPage = () => 
-  {
-    
+const SignUpPage = () => {
   const [formData, setFormData] = useState({
     userName: "",
     firstname: "",
     lastname: "",
     email: "",
-
+    phoneNumber: "",
     address: "",
     password: "",
     confirmPassword: "",
@@ -37,16 +35,13 @@ const SignUpPage = () =>
     }
 
     try {
-      const response = await fetch(
-        "https://localhost:7240/api/Auth/register",
-        {
-          // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/staffregister`, {
-          method: "POST",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("https://localhost:7240/api/Auth/register", {
+        // const response = await fetch(`${process.env.REACT_APP_BOOKNEST_URL}/Auth/staffregister`, {
+        method: "POST",
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
         alert("Registration successful!");
@@ -112,15 +107,26 @@ const SignUpPage = () =>
                 icon={<MdOutlineEmail />}
               />
             </div>
-            <TextInput
-              type="text"
-              id="address"
-              placeholder="Address"
-              required
-              value={formData.address}
-              onChange={handleChange}
-              icon={<GrLocation />}
-            />
+            <div className="flex gap-2.5">
+              <TextInput
+                type="text"
+                id="address"
+                placeholder="Address"
+                required
+                value={formData.address}
+                onChange={handleChange}
+                icon={<GrLocation />}
+              />
+              <TextInput
+                type="text"
+                id="phoneNumber"
+                placeholder="Phone Number"
+                required
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                icon={<FaUserAlt />}
+              />
+            </div>
             <TextInput
               id="password"
               type="password"
